@@ -88,7 +88,7 @@ function playerCreator(name, score) {
     },
     login() {
       return (this.login = false);
-    },
+    }
   };
 }
 
@@ -98,8 +98,9 @@ player1.increment(); // 9
 
 ## Benefits of using Factory Functions over Classes in JavaScript
 
-- There is no use of the _this_ keyword when instantiating variables, it is only used inside methods.
-- There is no use of the _new_ keyword which is often forgotten when creating 
+- There is no use of the **this** keyword when instantiating variables, it is only used inside methods.
+- There is no use of the **new** keyword which is often forgotten when creating objects using classes.
+- It's easier to set up since it looks quite similar to regular functions
 
 ---
 EOF
