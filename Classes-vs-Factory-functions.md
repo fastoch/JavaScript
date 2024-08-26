@@ -75,8 +75,31 @@ To avoid confusion that developers from these languages face when they encounter
 - once you call the function, it sets up and returns a new object
 
 >[!important]
->What are closures? => https://github.com/fastoch/JavaScript/blob/main/Closures.md
+>What are **closures**? => https://github.com/fastoch/JavaScript/blob/main/Closures.md
 
+Below is how we would implement a factory function:
+```js
+function playerCreator(name, score) {
+  return {
+    name: name,
+    score: score,
+    increment() {
+      return (this.score += 1);
+    },
+    login() {
+      return (this.login = false);
+    },
+  };
+}
+
+let player1 = playerCreator("John", 8);
+player1.increment(); // 9
+```
+
+## Benefits of using Factory Functions over Classes in JavaScript
+
+- There is no use of the _this_ keyword when instantiating variables, it is only used inside methods.
+- There is no use of the _new_ keyword which is often forgotten when creating 
 
 ---
 EOF
