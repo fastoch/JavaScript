@@ -87,11 +87,17 @@ function playerCreator(name, score) {
   return {
     name: name,
     score: score,
+    isLoggedIn: false,  // Add a property to track login status
     increment() {
       return (this.score += 1);
     },
     login() {
-      return (this.login = false);
+      this.isLoggedIn = true;  // Set login status to true
+      return this.isLoggedIn;
+    },
+    logout() {
+      this.isLoggedIn = false;  // Add a logout method
+      return this.isLoggedIn;
     }
   };
 }
