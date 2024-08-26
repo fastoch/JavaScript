@@ -54,4 +54,26 @@ class playerCreator {
 
 When we create a class object, we start with the keywork **class** then the function name.  
 Inside of the function, we add a constructor that holds the parameters to be used.  
-Notice that instead of adding **increment** and **login** methods on the prototype explicitly, we nicely tuck them inside the class object.
+Notice that instead of adding **increment** and **login** methods on the prototype explicitly, we nicely tuck them inside the class object,  
+though under the hood they are added to the prototype (implicitly).  
+
+## Why to use Classes?
+
+So if constructors and classes do essentially the same thing, why should we use classes instead of constructors?  
+- Classes are easy to read
+- By using classes, Javascript tries to follow the normal convention of object-oriented programming (OOP), though it is still a prototypical-based language.
+
+Classes are not native to Javascript but are widely used in OOP languages such as C# and Java.  
+To avoid confusion that developers from these languages face when they encounter Javascript, classes are a better solution.
+
+---
+
+# Factory functions
+
+- Factory functions are functions that return a new object.
+- They're quite similar to classes, but they utilize the power of closures.
+
+## What are closures?
+
+- Closures are a powerful and fundamental concept in programming.
+- 
