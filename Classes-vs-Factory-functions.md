@@ -12,6 +12,8 @@ Choosing the right pattern can be tricky.
 If you know constructors then classes shouldn't be hard to grasp.  
 Classes are a syntactic sugar of constructors in Javascript.  
 
+## Constructor function
+
 The code below shows a constructor function:
 ```js
 function playerCreator(name, score) {
@@ -29,6 +31,8 @@ playerCreator.prototype.login = function() {
 
 Notice how the **increment** and **login** functions are placed on the prototype.  
 They are **shared functions**, so any object created by the constructor has access to these methods. This saves memory.  
+
+## Class object
 
 This next code shows a class object:
 ```js
