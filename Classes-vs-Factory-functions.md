@@ -52,4 +52,6 @@ class playerCreator {
 }
 ```
 
-When we create a class object, 
+When we create a class object, we start with the keywork **class** then the function name.  
+Inside of the function, we add a constructor that holds the parameters to be used.  
+Notice that instead of adding **increment** and **login** methods on the prototype explicitly, we nicely tuck them inside the class object.
