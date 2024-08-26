@@ -14,7 +14,7 @@ Classes are a syntactic sugar of constructors in Javascript.
 
 The code below shows a constructor function:
 ```js
-functions playerCreator(name, score) {
+function playerCreator(name, score) {
   this.name = name;
   this.score = score;
 }
@@ -32,6 +32,20 @@ They are **shared functions**, so any object created by the constructor has acce
 
 This next code shows a class object:
 ```js
+class playerCreator {
 
+  constructor(name, score){
+    this.name = name;
+    this.score = score;
+  }
+
+  increment: function() {
+    this.score++;
+  };
+  login: function() {
+    this.login = false;
+  };
+}
 ```
 
+When we create a class object, 
