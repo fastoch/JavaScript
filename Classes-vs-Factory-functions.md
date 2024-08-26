@@ -71,9 +71,12 @@ To avoid confusion that developers from these languages face when they encounter
 # Factory functions
 
 - Factory functions are functions that return a new object.
-- They're quite similar to classes, but they utilize the power of closures.
+- They're quite similar to classes, but they utilize the power of **closures**.
+- once you call the function, it sets up and returns a new object
 
-## What are closures?
+>[!important]
+>What are closures? => https://github.com/fastoch/JavaScript/blob/main/Closures.md
 
-- Closures are a powerful and fundamental concept in programming.
-- 
+
+---
+EOF
