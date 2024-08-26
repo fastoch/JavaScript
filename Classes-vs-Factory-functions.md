@@ -61,7 +61,8 @@ though under the hood they are added to the prototype (implicitly).
 
 So if constructors and classes do essentially the same thing, why should we use classes instead of constructors?  
 - Classes are easy to read
-- By using classes, Javascript tries to follow the normal convention of object-oriented programming (OOP), though it is still a prototypical-based language.
+- By using classes, Javascript tries to follow the normal convention of object-oriented programming (OOP), though it is still
+  a prototypical-based language.
 
 Classes are not native to Javascript but are widely used in OOP languages such as C# and Java.  
 To avoid confusion that developers from these languages face when they encounter Javascript, classes are a better solution.
@@ -73,6 +74,9 @@ To avoid confusion that developers from these languages face when they encounter
 - Factory functions are functions that return a new object.
 - They're quite similar to classes, but they utilize the power of **closures**.
 - once you call the function, it sets up and returns a new object
+
+Unlike constructor functions or classes, **factory functions** don't require the '**new**' keyword and **can return any type of object**,  
+providing **more flexibility in object creation**.
 
 >[!important]
 >What are **closures**? => https://github.com/fastoch/JavaScript/blob/main/Closures.md
@@ -96,11 +100,21 @@ let player1 = playerCreator("John", 8);
 player1.increment(); // 9
 ```
 
-## Benefits of using Factory Functions over Classes in JavaScript
+## Benefits of using Factory Functions over Classes 
 
 - There is no use of the **this** keyword when instantiating variables, it is only used inside methods.
 - There is no use of the **new** keyword which is often forgotten when creating objects using classes.
 - It's easier to set up since it looks quite similar to regular functions
+- **Simplicity**:
+  - factory functions provide a more straightforward and flexible way to create objects,
+  - they don't have the syntactic complexities that come with class declarations and prototypes,
+  - making them more approachable for developers who prefer a simpler syntax
+- **Encapsulation** with Closures:
+  - it's easy to encapsulate private variables and objects with factory functions since it's inherent in its use
+
+## Benefits of using Classes over Factory Functions
+
+- 
 
 ---
 EOF
