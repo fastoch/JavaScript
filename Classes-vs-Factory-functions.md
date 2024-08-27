@@ -115,7 +115,7 @@ player1.increment(); // 9
   - factory functions provide a more straightforward and flexible way to create objects,
   - they don't have the syntactic complexities that come with class declarations and prototypes,
   - making them more approachable for developers who prefer a simpler syntax
-- **Encapsulation** with Closures:
+- **Encapsulation with Closures**:
   - it's easy to encapsulate private variables and objects with factory functions since it's inherent in its use
 
 ## Benefits of using Classes over Factory Functions
@@ -126,7 +126,16 @@ player1.increment(); // 9
   - classes support the concept of inheritance, making it easier to create a hierarchy of objects
   - you can use the **extends** keyword to create a **subclass** that inherits from a **superclass**
 ```js
-class Student 
+class Student extentds Person {
+  constructor(name, age, grade) {
+    super(name, age);
+    this.grade = grade;
+  }
+
+  // Additional methods or overrides
+}
+
+const student1 = new Student('James', 18, 'A');
 ```
 - **'instanceof'** operator:
   - classes make use of the **instanceof** operator, which can be useful for type-checking and determining if an object
