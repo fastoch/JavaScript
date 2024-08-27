@@ -141,8 +141,13 @@ const student1 = new Student('James', 18, 'A');
   - classes make use of the **instanceof** operator, which can be useful for type-checking and determining if an object
     is an instance of a particular class
 ```js
-
+console.log(student1 instanceof Student); // true
+console.log(student1 instanceof Person); // true
 ```
+
+# Conclusion
+
+The choice between classes and factory functions depends on your specific needs and which pattern your are comfortable with.  
 
 ---
 EOF
