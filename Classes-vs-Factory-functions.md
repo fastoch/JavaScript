@@ -128,8 +128,9 @@ player1.increment(); // 9
 ```js
 class Student 
 ```
-- **'instanceof'** operator: classes make use of the **instanceof** operator, which can be useful for type-checking and determining if an object
-  is an instance of a particular class
+- **'instanceof'** operator:
+  - classes make use of the **instanceof** operator, which can be useful for type-checking and determining if an object
+    is an instance of a particular class
 ```js
 
 ```
