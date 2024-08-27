@@ -120,7 +120,19 @@ player1.increment(); // 9
 
 ## Benefits of using Classes over Factory Functions
 
-- 
+- Classes save memory, so they are suitable when creating large applications that require creation of thousands of objects
+- Classes are used in many programming languages hence it is a cleaner way to follow object-oriented programming paradigm
+- **Inheritance**:
+  - classes support the concept of inheritance, making it easier to create a hierarchy of objects
+  - you can use the **extends** keyword to create a **subclass** that inherits from a **superclass**
+```js
+class Student 
+```
+- **'instanceof'** operator: classes make use of the **instanceof** operator, which can be useful for type-checking and determining if an object
+  is an instance of a particular class
+```js
+
+```
 
 ---
 EOF
