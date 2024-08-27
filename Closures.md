@@ -39,9 +39,24 @@ Here's what the code does:
 - It defines a parent function `parentFunc()` that contains a local variable `counter` and a nested function `childFunc()`
 - `childFunc()` has access to both its own local variable `innerCounter` and the outer `counter` variable due to closure
 - `parentFunc()` returns `childFunc`, which is then assigned to `myChild`.
-- When `myChild()` is called, it executes `childFunc()`, incrementing both `counter` and `innerCounter`, and then logging their values.
+- When `myChild()` is called, it executes `childFunc()`, incrementing both `counter` and `innerCounter`, and then logging their values
 - Each time `myChild()` is called, `counter` increases, but `innerCounter` always resets to 1 because it's redeclared each time the function runs
 
+The output for the above code is: `1 1`  
+But if we execute `myChild()` more than once, let's say 3 times, the output will be:
+```
+1 1
+2 1
+3 1
+```
+
+- In regular functions, once the function is executed it is wiped clean and does not persist any data.
+- When using closures however, the inner function stores variables from the outer function in its own special location
+- `childFunc()` persists the value for `counter` as it is when the function completes
+- meaning that at the start of the second execution, `counter` is not set to 0, it is set to 1
+- and at the start of the third execution, `counter` is set to 2
+
+This makes the use of closures a great option when we want to remember certain values in functions.
 
 ---
 EOF
