@@ -12,4 +12,5 @@ src = https://www.freecodecamp.org/learn/back-end-development-and-apis/
 - it consists of a single JSON object where information is stored in key-value pairs
   - There are only 2 required fields: `name` and `version`, but it's good practice to provide additional information
 - you can create the `package.json` file from the terminal using the `npm init` command, this will run a guided setup
-  - using the 
+  - using `npm init` with the `-y` flag will generate the file without having it ask any questions: `npm init -y`
+- if you look at the file tree of your project, 
