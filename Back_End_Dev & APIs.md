@@ -17,4 +17,6 @@ src = https://www.freecodecamp.org/learn/back-end-development-and-apis/
 - One of the most common pieces of information in this file is the `author` field.
   - It specifies who created the project, and can consist of a string or an object with contact or other details
   - an object is recommended for bigger projects, but a simple string like the following example will do for a small project:
-     `"author": "Jane Doe",`
+  - `"author": "Jane Doe",`
+
+
