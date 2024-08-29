@@ -15,3 +15,6 @@ src = https://www.freecodecamp.org/learn/back-end-development-and-apis/
   - using `npm init` with the `-y` flag will generate the file without having it ask any questions: `npm init -y`
 - if you look at the file tree of your project, you will find the `package.json` file on the top level of the tree
 - One of the most common pieces of information in this file is the `author` field.
+  - It specifies who created the project, and can consist of a string or an object with contact or other details
+  - an object is recommended for bigger projects, but a simple string like the following example will do for a small project:
+     `"author": "Jane Doe",`
