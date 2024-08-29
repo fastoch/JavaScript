@@ -19,4 +19,5 @@ src = https://www.freecodecamp.org/learn/back-end-development-and-apis/
   - an object is recommended for bigger projects, but a simple string like the following example will do for a small project:
   - `"author": "Jane Doe",`
 
-
+>[!important]
+>Remember that you're writing JSON, so all field names must use double quotes and be separated with a comma.
