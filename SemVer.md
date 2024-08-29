@@ -2,7 +2,14 @@ src = https://www.freecodecamp.org/learn/back-end-development-and-apis/managing-
 
 ---
 
-Versions of the **npm** packages in the **dependencies** section of your `package.json` file follow what's called **Semantic Versioning** (SemVer), an industry standard  
-for software versioning aiming to make it easier to manage dependencies.  
+Versions of the **npm** packages in the **dependencies** section of your `package.json` file follow what's called **Semantic Versioning** (SemVer), an industry standard for software versioning aiming to make it easier to manage dependencies.  
 
-Libraries, frameworks or other tools
+Libraries, frameworks or other tools published on npm should use SemVer in order to clearly communicate what kind of changes projects can expect if they update.  
+
+Knowing SemVer can be useful when you develop software that uses external dependencies, which you almost always do.  
+One day, your understanding of these **numbers** will save you from accidentally introducing breaking changes to your project without understanding why things that worked yesterday suddenly don't work today.  
+
+This is 
+
+---
+EOF
