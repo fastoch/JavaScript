@@ -9,7 +9,11 @@ Libraries, frameworks or other tools published on npm should use SemVer in order
 Knowing SemVer can be useful when you develop software that uses external dependencies, which you almost always do.  
 One day, your understanding of these **numbers** will save you from accidentally introducing breaking changes to your project without understanding why things that worked yesterday suddenly don't work today.  
 
-This is 
+This is how Semantic Versioning works according to the official website:  
+`"package": "MAJOR.MINOR.PATCH"`  
+
+- The MAJOR version should increment when you make incompatible API changes
+- 
 
 ---
 EOF
