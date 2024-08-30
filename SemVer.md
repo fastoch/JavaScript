@@ -1,6 +1,9 @@
-src = https://www.freecodecamp.org/learn/back-end-development-and-apis/managing-packages-with-npm/manage-npm-dependencies-by-understanding-semantic-versioning
+source:  
+https://www.freecodecamp.org/learn/back-end-development-and-apis/managing-packages-with-npm/manage-npm-dependencies-by-understanding-semantic-versioning
 
 ---
+
+## Introduction
 
 Versions of the **npm** packages in the **dependencies** section of your `package.json` file follow what's called **Semantic Versioning** (SemVer), an industry standard for software versioning aiming to make it easier to manage dependencies.  
 
@@ -36,6 +39,20 @@ Here's an example of how to allow updates to any 1.3.x version:
 ```json
 "dependencies": {
   "package": "~1.3.8"
+},
+```
+
+---
+
+## Use the Caret to Use the Latest Minor Version of a Dependency
+
+Similar to how the tilde allows npm to install the latest PATCH, the caret `^` allows npm to install future updates as well.  
+The difference is that the caret will allow both MINOR updates and PATCHes.
+
+If you were to use the caret as a version prefix instead of the tilde, npm would be allowed to update to any 1.x.x version:
+```json
+"dependencies": {
+  "package": "^1.3.8"
 },
 ```
 
