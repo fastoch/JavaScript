@@ -49,7 +49,7 @@ Here's an example of how to allow updates to any 1.3.x version:
 Similar to how the tilde allows npm to install the latest PATCH, the caret `^` allows npm to install future updates as well.  
 The difference is that the caret will allow both MINOR updates and PATCHes.
 
-If you were to use the caret as a version prefix instead of the tilde, npm would be allowed to update to any 1.x.x version:
+If you were to use the caret as a version prefix, npm would be allowed to update to any 1.x.x version:
 ```json
 "dependencies": {
   "package": "^1.3.8"
