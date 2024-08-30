@@ -12,8 +12,15 @@ One day, your understanding of these **numbers** will save you from accidentally
 This is how Semantic Versioning works according to the official website:  
 `"package": "MAJOR.MINOR.PATCH"`  
 
-- The MAJOR version number should be incremented when a package undergoes changes that are not backwards-compatible with previous versions
-- The MINOR version should be incremented when you add functionality in a backwards-compatible manner
+- The MAJOR version number should be incremented when you make incompatible API changes
+- The MINOR version number should be incremented when you add functionality in a backwards-compatible manner
+- The PATCH version number should be incremented when you make backwards-compatible bug fixes
+
+In other words:
+- PATCHes are bug fixes
+- MINORs add new features but neither of them break what worked before
+- MAJORs add changes that won't work with earlier versions
+
 
 ---
 EOF
