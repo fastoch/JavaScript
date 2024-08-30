@@ -1,0 +1,3 @@
+- Node.js is a **JavaScript runtime** that allows developers to write **backend** (server-side) **programs**.
+- Node.js comes with a handful of **built-in modules** (small independent programs)
+  - some of the **core modules** include **HTTP**, which acts like a server, and **File System**, a module to read and modify files
