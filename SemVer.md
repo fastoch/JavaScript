@@ -12,8 +12,8 @@ One day, your understanding of these **numbers** will save you from accidentally
 This is how Semantic Versioning works according to the official website:  
 `"package": "MAJOR.MINOR.PATCH"`  
 
-- The MAJOR version should increment when you make incompatible API changes
-- 
+- The MAJOR version number should be incremented when a package undergoes changes that are not backwards-compatible with previous versions
+- The MINOR version should be incremented when you add functionality in a backwards-compatible manner
 
 ---
 EOF
