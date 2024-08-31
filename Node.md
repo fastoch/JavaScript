@@ -165,7 +165,7 @@ Let's create a simple API by creating a route that responds with JSON at the pat
 
 **Example**:  
 Serve the object `{"message": "Hello json"}` as a response, in JSON format, to GET requests to the `/json` route.  
-Then point your browser to `your-app-url/json`, you should see the message on the screen.
+Then point your browser to `your-app-url/json`, the endpoint `/json` should serve the JSON object {"message": "Hello json"}.
 ```js
 let express = require('express');
 let app = express();
