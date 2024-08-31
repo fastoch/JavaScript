@@ -89,7 +89,23 @@ Note that we used an **arrow function** to write the **handler**.
 
 ## Serve an HTML file
 
-You can respond to requests with a file, using the `res.sendFile(path)` method.
+- You can respond to requests with a file, using the `res.sendFile(path)` method  
+- You can put it inside the `app.get('/', (re, res) => {...})` route handler
+
+Behind the scenes, this method will set the appropriate **headers** to instruct your browser on how to handle  
+the file you want to send, according to its **type**. Then it will read and send the file.  
+
+>[!important]
+>This method needs an absolute file path.
+>We recommend you to use the **Node global variable** `__dirname` to calculate the path like this:
+>`absolutePath = __dirname + '/relativePath/file.ext`
+
+For example, to send the `/views/index.html` file as a response to GET requests
+
+
+
+
+
 
 ---
 EOF
