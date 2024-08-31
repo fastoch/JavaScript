@@ -60,6 +60,14 @@ One fundamental method is `app.listen(port)`. It tells your server to listen on 
 Let's serve our first string!  
 In Express, routes take the following structure: `app.METHOD(PATH, HANDLER)`  
 
+...
+
+Here's how it looks when applied to `myApp.js`:
+```js
+app.get("/", (req, res) => {
+    res.send("Hello Express");
+});
+```
 
 ---
 EOF
