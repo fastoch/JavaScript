@@ -161,7 +161,7 @@ Let's create a simple API by creating a route that responds with JSON at the pat
   - and finally sends the data back
 - A valid JavaScript object has the usual structrure `{key: data}`
   - `data` can be a number, a string, a nested object, or an array
-  - `data` can also be a variable or the result of a function call, in which case it will be evaluated before being converted into a string
+  - `data` can also be a variable or the result of a function call, in which case it is evaluated before being converted into a string
 
 **Example**:  
 Serve the object `{"message": "Hello json"}` as a response, in JSON format, to GET requests to the `/json` route.  
