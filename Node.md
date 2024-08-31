@@ -124,7 +124,7 @@ If you don't know what **middleware** is... don't worry, we will discuss in deta
 - a middleware needs to be **mounted** using the method `app.use(path, middlewareFunction)` 
 - The first `path` argument is optional. If you don't pass it, the middleware will be executed for all requests
 
-**Example**:
+**Example**:  
 Mount the `express.static()` middleware to the path `/public` with `app.use()`.  
 The absolute path to the assets folder is `__dirname + "/public"`
 ```js
