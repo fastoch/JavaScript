@@ -98,13 +98,13 @@ the file you want to send, according to its **type**. Then it will read and send
 >[!important]
 >This method needs an **absolute file path**.
 >We recommend you to use the **Node global variable** `__dirname` to calculate the path like this:
->`absolutePath = __dirname + '/relativePath/file.ext'`
+>`absolutePath = __dirname + "/relativePath/file.ext"`
 
 For example, to send the `/views/index.html` file as a response to GET requests to the `/` path, our `myApp.js` file should look like this:
 ```js
 let express = require('express');
 let app = express();
-let absolutePath = __dirname + '/views/index.html'
+let absolutePath = __dirname + "/views/index.html"
 app.get("/", (req, res) => {
     res.sendFile(absolutePath);
 });
@@ -124,6 +124,18 @@ If you don't know what **middleware** is... don't worry, we will discuss in deta
 - a middleware needs to be **mounted** using the method `app.use(path, middlewareFunction)` 
 - The first `path` argument is optional. If you don't pass it, the middleware will be executed for all requests
 
+**Example**:
+Mount the `express.static()` middleware to the path `/public` with `app.use()`.  
+The absolute path to the assets folder is `__dirname + "/public"`
+```js
+let express = require('express');
+let app = express();
+let absolutePath = __dirname + '/views/index.html'
+app.get("/", (req, res) => {
+    res.sendFile(absolutePath);
+});
+app.use("/public", express.static(__dirname + "/public"));
+```
 
 
 ---
