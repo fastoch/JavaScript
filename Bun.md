@@ -1,5 +1,14 @@
 src = https://youtu.be/eTB0UCDnMQo
 
+---
+
+Welcome this Bun crash course.  
+Bun is a cutting-edge toolkit designed to supercharge your JavaScript and TypeScript applications.  
+With its lightning-fast startup times, built-in support for TypeScript and JSX, and a range of powerful features designed to seamlessly replace Node.js, Bun promises to revolutionize your development experience.  
+Whether you're looking to optimize serverless functions or enhance your workflow, this course will empower you to leverage Bun's full potential and seamlessly integrate it into your projects.
+
+---
+
 - Bun is an all-in-one **JavaScript runtime** and toolkit designed for **speed** and efficiency
 - Bun serves as a drop-in **replacement for Node**.js
 - It's written in **Zig** and powered by **JavaScriptCore**, offering significantly faster startup times and lower memory usage compared to Node.js
