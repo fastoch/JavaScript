@@ -142,7 +142,10 @@ app.use("/public", express.static(__dirname + "/public"));
 ## Serve JSON on a specific Route
 
 - While an HTML server serves HTML, an API serves data.
-- A REST (REpresentational State Transfer) API allows data exchange in a simple way
+- A REST (REpresentational State Transfer) API allows data exchange in a simple way,
+  without the need for clients to know any detail about the server
+- The client only needs to know where the resource is (the URL), and the action it wants to perform on it (the verb)
+- 
 
 
 ---
