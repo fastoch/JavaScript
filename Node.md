@@ -141,10 +141,12 @@ app.use("/public", express.static(__dirname + "/public"));
 
 ## Serve JSON on a specific Route
 
-- While an HTML server serves HTML, an API serves data.
-- A REST API allows data exchange in a simple way, without the need for clients to know any detail about the server
-- The client only needs to know where the resource is (the URL), and the action it wants to perform on it (the verb)
-- 
+- While an HTML server serves HTML, an **API** serves data.
+- A **REST** API allows data exchange in a simple way, without the need for clients to know any detail about the server
+- The client only needs to know where the resource is (the **URL**), and the action it wants to perform on it (the **verb**)
+- The **GET** verb is used when you are **fetching** some information, without modifying anything
+- These days, the preferred data format for moving information around the Web is **JSON**
+- Simply put, JSON is a convenient way to represent a JavaScript object as a string, so it can be easily transmitted
 
 >[!note]
 >REST = REpresentational State Transfer
