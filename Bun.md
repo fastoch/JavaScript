@@ -1,4 +1,6 @@
-src = https://youtu.be/eTB0UCDnMQo
+sources: 
+- https://youtu.be/eTB0UCDnMQo
+- https://bun.sh/ 
 
 ---
 
@@ -38,7 +40,10 @@ While Node.js remains the most widely used JavaScript runtime, Bun aims to addre
 - The goal of Bun is to:
   - run most of the world's server-side JavaScript
   - provide tools to improve performance, reduce complexity, and multiply developer productivity
-- 
+
+## Installation
+
+Run the following cmd: `curl -fsSL https://bun.sh/install | bash`  
 
 ---
 
