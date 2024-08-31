@@ -137,6 +137,13 @@ app.get("/", (req, res) => {
 app.use("/public", express.static(__dirname + "/public"));
 ```
 
+---
+
+## Serve JSON on a specific Route
+
+- While an HTML server serves HTML, an API serves data.
+- A REST (REpresentational State Transfer) API allows data exchange in a simple way
+
 
 ---
 EOF
