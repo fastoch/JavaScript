@@ -152,4 +152,33 @@ app.use("/public", express.static(__dirname + "/public"));
 >REST = REpresentational State Transfer
 
 ---
+
+Let's create a simple API by creating a route that responds with JSON at the path `/json`.
+- You can do it as usual, with the `app.get()` method
+- inside the route handler, use the method `res.json()`, passing in an object as an argument
+  - this method converts a javaScript object into a string,
+  - then sets the appropriate headers to tell your browser that you are serving JSON,
+  - and finally sends the data back
+- A valid JavaScript object has the usual structrure `{key: data}`
+  - `data` can be a number, a string, a nested object, or an array
+  - `data` can also be a variable or the result of a function call, in which case it will be evaluated before being converted into a string
+
+**Example**:  
+Serve the object `{"message": "Hello json"}` as a response, in JSON format, to GET requests to the `/json` route.  
+Then point your browser to `your-app-url/json`, you should see the message on the screen.
+```js
+let express = require('express');
+let app = express();
+let absolutePath = __dirname + '/views/index.html'
+app.get("/", (req, res) => {
+    res.sendFile(absolutePath);
+});
+app.use("/public", express.static(__dirname + "/public"));
+app.get("/json", (req, res) => {
+  res.json({"message": "Hello json"})
+});
+```
+
+
+---
 EOF
