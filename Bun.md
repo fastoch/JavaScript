@@ -6,7 +6,10 @@ src = https://youtu.be/eTB0UCDnMQo
 
 Welcome this Bun crash course.  
 Bun is a cutting-edge toolkit designed to supercharge your JavaScript and TypeScript applications.  
-With its lightning-fast startup times, built-in support for TypeScript and JSX, and a range of powerful features designed to seamlessly replace Node.js, Bun promises to revolutionize your development experience.  
+
+With its lightning-fast startup times, built-in support for TypeScript and JSX, and a range of powerful  
+features designed to seamlessly replace Node.js, Bun promises to revolutionize your development experience.  
+
 Whether you're looking to optimize serverless functions or enhance your workflow, this course will empower you to leverage Bun's full potential and seamlessly integrate it into your projects.
 
 ---
@@ -31,7 +34,11 @@ While Node.js remains the most widely used JavaScript runtime, Bun aims to addre
 
 # Getting Started with Bun
 
-
+- With Bun, you can develop, test, run, and bundle JavaScript & TypeScript projects.
+- The goal of Bun is to:
+  - run most of the world's server-side JavaScript
+  - provide tools to improve performance, reduce complexity, and multiply developer productivity
+- 
 
 ---
 
@@ -112,4 +119,4 @@ While Node.js remains the most widely used JavaScript runtime, Bun aims to addre
 
 
 ---
-EOF
+@3/68
