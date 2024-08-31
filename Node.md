@@ -100,7 +100,7 @@ the file you want to send, according to its **type**. Then it will read and send
 >We recommend you to use the **Node global variable** `__dirname` to calculate the path like this:
 >`absolutePath = __dirname + '/relativePath/file.ext'`
 
-For example, to send the `/views/index.html` file as a response to GET requests to the `/` path:
+For example, to send the `/views/index.html` file as a response to GET requests to the `/` path, our `myApp.js` file should look like this:
 ```js
 let express = require('express');
 let app = express();
@@ -114,8 +114,15 @@ app.get("/", (req, res) => {
 
 ## Serve Static Assets
 
+- An HTML server usually has one or more directories that are accessible by the user.
+- You can place there the static assets needed by your application (stylesheets, scripts, images)
+- In Express, you can put in place this functionality using the **middleware** `express.static(path)`
+- The `path` parameter is the **absolute path** of the folder containing the assets
 
-
+If you don't know what **middleware** is... don't worry, we will discuss in detail later.
+- Basically, middleware are **functions that intercept route handlers**, adding some kind of information
+- a middleware needs to be **mounted** using the method `app.use(path, middlewareFunction)` 
+- The first `path` argument is optional. If you don't pass it, the middleware will be executed for all requests
 
 
 
