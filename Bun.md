@@ -43,7 +43,9 @@ While Node.js remains the most widely used JavaScript runtime, Bun aims to addre
 
 ## Installation
 
-Run the following cmd: `curl -fsSL https://bun.sh/install | bash`  
+- Run the following cmd to install it on Linux: `curl -fsSL https://bun.sh/install | bash`
+- Then run this cmd if fish is your default shell: `source ~/.config/fish/config.fish`
+- finally, run this to check the version: `bun -v`
 
 ---
 
