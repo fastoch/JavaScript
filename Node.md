@@ -96,11 +96,23 @@ Behind the scenes, this method will set the appropriate **headers** to instruct 
 the file you want to send, according to its **type**. Then it will read and send the file.  
 
 >[!important]
->This method needs an absolute file path.
+>This method needs an **absolute file path**.
 >We recommend you to use the **Node global variable** `__dirname` to calculate the path like this:
->`absolutePath = __dirname + '/relativePath/file.ext`
+>`absolutePath = __dirname + '/relativePath/file.ext'`
 
-For example, to send the `/views/index.html` file as a response to GET requests
+For example, to send the `/views/index.html` file as a response to GET requests to the `/` path:
+```js
+let express = require('express');
+let app = express();
+let absolutePath = __dirname + '/views/index.html'
+app.get("/", (req, res) => {
+    res.sendFile(absolutePath);
+});
+```
+
+---
+
+## Serve Static Assets
 
 
 
