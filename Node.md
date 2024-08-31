@@ -86,4 +86,10 @@ app.get("/", (req, res) => {
 Note that we used an **arrow function** to write the **handler**.
 
 ---
+
+## Serve an HTML file
+
+You can respond to requests with a file, using the `res.sendFile(path)` method.
+
+---
 EOF
