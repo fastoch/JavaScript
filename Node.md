@@ -64,8 +64,8 @@ In Express, routes take the following structure: `app.METHOD(PATH, HANDLER)`
 - `PATH` is a relative path on the server (it can be a string, or even a regular expression)
 - `HANDLER` is a function that Express calls when the route is matched
 
-Handlers take the form `function(req, res) {...}` where `req` is the request object and `res` is the response object.  
-For example, the following handler will serve the string 'Response String':
+**Handlers** take the form `function(req, res) {...}` where `req` is the request object and `res` is the response object.  
+For example, the following **handler** will serve the string 'Response String':
 ```js
 function(req, res) {
   res.send('Response String');
@@ -83,6 +83,7 @@ app.get("/", (req, res) => {
     res.send("Hello Express");
 });
 ```
+Note that we used an **arrow function** to write the **handler**.
 
 ---
 EOF
