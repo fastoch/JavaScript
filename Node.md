@@ -149,11 +149,41 @@ app.use("/public", express.static(__dirname + "/public"));
 - Simply put, JSON is a convenient way to represent a JavaScript object as a string, so it can be easily transmitted
 
 >[!note]
+>API = Application Programming Interface
+
+>[!note]
 >REST = REpresentational State Transfer
+
+### A word about APIs
+
+An API is a set of defined rules and protocols that allows different software applications to communicate with each other.  
+APIs serve as **an interface between different software components**, enabling them to:
+- Request and exchange data
+- Perform operations
+- Access services and functionality
+
+In web development, APIs facilitate communication between a client (like a web browser or mobile app) and a server.
+
+### A word about RESTful APIs
+
+REST is an architectural style for designing networked applications.  
+RESTful APIs:
+- Use standard HTTP methods (GET, POST, PUT, DELETE, etc.)
+- Are stateless
+- Treat server objects as resources that can be created, read, updated, or deleted
+
+When learning to build APIs with Node and Express, you'll encounter:
+- **Routing**: Defining URL paths and HTTP methods for API endpoints
+- **Middleware**: Functions that have access to the request and response objects
+- **Request handling**: Processing incoming data from API calls
+- **Response formatting**: Sending data back to the client, often in JSON format
+- **Error handling**: Managing and responding to errors in API requests
 
 ---
 
-Let's create a simple API by creating a route that responds with JSON at the path `/json`.
+### Let's create a simple API 
+
+We will create a very basic API by creating a route that responds with JSON at the path `/json`.
 - You can do it as usual, with the `app.get()` method
 - inside the route handler, use the method `res.json()`, passing in an object as an argument
   - this method converts a javaScript object into a string,
