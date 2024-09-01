@@ -37,16 +37,16 @@ Your `package.json` file would look like this:
 
 # Start a working Express server
 
-In the first two lines of the file `myApp.js`, you can see how easy it is to create an Express app object: 
+In the first two lines of the file `myApp.js`, you can see how easy it is to create **an Express app object**: 
 ```js
 let express = require('express');
 let app = express();
 ```
-The first line imports the Express.js framework:
+The first line **imports the Express.js framework**:
 - `require()` is a built-in function in Node.js used to include external modules.
 - The `express` variable now contains the Express.js module.
 
-The second line creates an instance of an Express application:
+The second line **creates an instance of an Express application**:
 - The `express()` function is a top-level function exported by the Express module.
 - The `app` variable is now an Express application object.
 
