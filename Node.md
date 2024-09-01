@@ -169,8 +169,10 @@ In web development, APIs facilitate communication between a client (like a web b
 REST is an architectural style for designing networked applications.  
 RESTful APIs:
 - Use standard HTTP methods (GET, POST, PUT, DELETE, etc.)
-- Are stateless
+- Are stateless (the server does not store any information about the client's session state)
 - Treat server objects as resources that can be created, read, updated, or deleted
+
+---
 
 When learning to build APIs with Node and Express, you'll encounter:
 - **Routing**: Defining URL paths and HTTP methods for API endpoints
