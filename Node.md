@@ -193,7 +193,7 @@ We will create a very basic API by creating a route that responds with JSON at t
   - and finally sends the data back
 - A valid JavaScript object has the usual structrure `{key: data}`
   - `data` can be a number, a string, a nested object, or an array
-  - `data` can also be a variable or the result of a function call, in which case it is evaluated before being converted into a string
+  - `data` can also be a variable or the result of a function call, in which case it's evaluated before being converted into a string
 
 **Example**:  
 Serve the object `{"message": "Hello json"}` as a response, in JSON format, to GET requests to the `/json` route.  
@@ -211,6 +211,27 @@ app.get("/json", (req, res) => {
 });
 ```
 
+---
+
+## Use the .env file
+
+- The `.env` file is a hidden file that is used to pass environment variables to your application
+- This file is **secret**, no one but you can access it
+- and it can be used to store data that you want to keep private or hidden
+- For example, you can store **API keys** from external services or your **database URI** (uniform resource identifier)
+- You can also use it to store **configuration options**
+  - by setting config options, you can change the behavior of your app, without the need to rewrite some code
+
+>[!note]
+>An API key is a unique identifier for authenticating and authorizing users to an API
+
+>[!note]
+>URIs include URLs (uniforme resource locators), which locate and retrieve resources on a network.
+>They also include URNs (uniform resource names), which provide a unique name without a means of retrieving the resource
+
+- The environment variables are accessible from the app as `process.env.VAR_NAME`
+- The `process.env` object is a global Node object, and variables are passed as strings
+- 
 
 ---
 EOF
