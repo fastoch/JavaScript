@@ -298,7 +298,8 @@ module.exports = app;
 ```
 The response object should either be `{"message": "Hello json"}` or `{"message": "HELLO JSON"}` depending on the `MESSAGE_STYLE` value.  
 
-The `dotenv` package needs to be included in our `package.json` file. It loads environment variables from our `.env` file into `process.env`.  
+The `dotenv` package needs to be included in our `package.json` file.  
+It loads the environment variables from our `.env` file into `process.env`.  
 ```json
 {
   "name": "fcc-learn-node-with-express",
@@ -317,6 +318,19 @@ The `dotenv` package needs to be included in our `package.json` file. It loads e
 }
 ```
 
+---
+
+## Implement a root-level request logger middleware
+
+Earlier (Serve Static Assets), you were introduced to the `express.static()` middleware function.  
+Now it's time to see what middleware is, in more detail.  
+
+**Middleware functions** are functions that take 3 arguments: 
+- the **request** object 
+- the **response** object 
+- and the **next function** in the application's request-response cycle
+
+These functions  
 
 ---
 EOF
