@@ -217,8 +217,9 @@ app.get("/json", (req, res) => {
 
 - The `.env` file is a hidden file that is used to pass environment variables to your application
 - This file is usually a simple text file containing **key-value pairs** where each line represents a single environment variable
-  - KEY: The name of the environment variable.
-  - VALUE: The value assigned to that variable. 
+  - **KEY**: The name of the environment variable.
+  - **VALUE**: The value assigned to that variable. 
+- Since `.env` files are designed to be compatible with shell syntax, we generally don't need to wrap names or values in quotes
 - This `.env` file is **secret**, no one but you can access it
 - and it can be used to store data that you want to keep private or hidden
 - For example, you can store **API keys** from external services or your **database URI** (uniform resource identifier)
@@ -235,7 +236,6 @@ app.get("/json", (req, res) => {
 - The environment variables are accessible from the app as `process.env.VAR_NAME`
 - The `process.env` object is a global Node object, and variables are passed as strings
 - By convention, the environment variable names are all **uppercase**, with words separated by an **underscore**
-- Since `.env` files are designed to be compatible with shell syntax, we generally don't need to wrap names or values in quotes
 - It's also important to note that there cannot be space around the equals sign when you assign values to variables
   - _example_: `VAR_NAME=value`
 
@@ -243,6 +243,14 @@ app.get("/json", (req, res) => {
 
 ### Let's add an environment variable as a configuration option
 
+To do that, we will:
+- create an `.env` file to the root of our project directory
+- store the variable `MESSAGE_STYLE=uppercase` in this file
+
+Then, in the `/json` GET route handler we've created earlier: 
+- access `process.env.MESSAGE_STYLE` and transform the response object's `message` to uppercase if the variable equals `uppercase`
+
+The response object should either be `{"message": "Hello json"}` or `{"message": "HELLO JSON"}` depending on the `MESSAGE_STYLE` value
 
 
 ---
