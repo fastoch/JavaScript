@@ -41,6 +41,8 @@ In the first two lines of the file `myApp.js`, you can see how easy it is to cre
 ```js
 let express = require('express');
 let app = express();
+
+module.exports = app;
 ```
 The first line **imports the Express.js framework**:
 - `require()` is a built-in function in Node.js used to include external modules.
@@ -82,6 +84,8 @@ let app = express();
 app.get("/", (req, res) => {
     res.send("Hello Express");
 });
+
+module.exports = app;
 ```
 Note that we used an **arrow function** to write the **handler**.
 
@@ -108,6 +112,8 @@ let absolutePath = __dirname + "/views/index.html"
 app.get("/", (req, res) => {
     res.sendFile(absolutePath);
 });
+
+module.exports = app;
 ```
 
 ---
@@ -135,6 +141,8 @@ app.get("/", (req, res) => {
     res.sendFile(absolutePath);
 });
 app.use("/public", express.static(__dirname + "/public"));
+
+module.exports = app;
 ```
 
 ---
@@ -209,6 +217,8 @@ app.use("/public", express.static(__dirname + "/public"));
 app.get("/json", (req, res) => {
   res.json({"message": "Hello json"})
 });
+
+module.exports = app;
 ```
 
 ---
@@ -247,13 +257,51 @@ To do that, we will:
 - create an `.env` file to the root of our project directory
 - store the variable `MESSAGE_STYLE=uppercase` in this file
 
+```env
+MESSAGE_STYLE=uppercase
+```
+
 Then, in the `/json` GET route handler we've created earlier, we should: 
 - access `process.env.MESSAGE_STYLE` and transform the response object's `message` to uppercase if the variable equals `uppercase`
+- At the top of our `myApp.js` file, we need to add `require('dotenv').config()` to load the environment variables.
 
+```js
+require('dotenv').config()
+
+let express = require('express');
+let app = express();
+let absolutePath = __dirname + "/views/index.html"
+app.get("/", (req, res) => {
+    res.sendFile(absolutePath);
+});
+app.use("/public", express.static(__dirname + "/public"));
+app.get("/json", (req, res) => {
+    res.json({"message": "Hello json"});
+    // TODO
+});
+
+module.exports = app;
+```
 The response object should either be `{"message": "Hello json"}` or `{"message": "HELLO JSON"}` depending on the `MESSAGE_STYLE` value.  
 
 The `dotenv` package needs to be included in our `package.json` file. It loads environment variables from our `.env` file into `process.env`.  
-At the top of our `myApp.js` file, we need to add `require('dotenv').config()` to load the environment variables.
+```json
+{
+  "name": "fcc-learn-node-with-express",
+  "version": "0.1.0",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^16.0.1",
+    "express": "^4.14.0",
+    "fcc-express-bground": "https://github.com/freeCodeCamp/fcc-express-bground-pkg.git"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node --watch server.js"
+  }
+}
+```
 
 
 ---
