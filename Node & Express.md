@@ -322,15 +322,38 @@ It loads the environment variables from our `.env` file into `process.env`.
 
 ## Implement a root-level request logger middleware
 
-Earlier (Serve Static Assets), you were introduced to the `express.static()` middleware function.  
+Earlier, you were introduced to the `express.static()` middleware function.  
 Now it's time to see what middleware is, in more detail.  
 
 **Middleware functions** are functions that take 3 arguments: 
 - the **request** object 
 - the **response** object 
-- and the **next function** in the application's request-response cycle
+- and the **next function** in the application's **request-response cycle**
 
-These functions  
+These functions execute some code that can have side effects on the app, and usually **add information to the request or response objects**. They can also end the cycle by sending a response when some condition is met.  
+
+If they don't send the response when they are done, they start the execution of the next function in the stack.  
+This triggers calling the **third argument**, `next()`.
+
+Look at the following example:
+```js
+function(req, res, next) {
+  console.log("I'm a middleware...");
+  next();
+}
+```
+Let's suppose we mounted this function on a route. When a request matches the route, it displays the string "I'm a middleware...",  
+then it executes the next function in the stack.  
+
+To mount a middleware function at root level, you can use the `app.use(<mware-function>)` method.  
+This method executes for all HTTP methods (GET, POST, PUT, etc.) unless a specific path is specified.  
+In this case, the function will be executed for all the requests, but you can also set more specific conditions.  
+For example, if you want a function to be executed only for POST requests you could use `app.post(<mware-function>)`.  
+Analogous methods exist for all the HTTP verbs (GET, DELETE, PUT, ...).  
+
+We will build a simple logger. For every request, it should log to the console a string taking the following format:  
+
+
 
 ---
 EOF
