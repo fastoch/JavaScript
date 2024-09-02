@@ -247,10 +247,13 @@ To do that, we will:
 - create an `.env` file to the root of our project directory
 - store the variable `MESSAGE_STYLE=uppercase` in this file
 
-Then, in the `/json` GET route handler we've created earlier: 
+Then, in the `/json` GET route handler we've created earlier, we should: 
 - access `process.env.MESSAGE_STYLE` and transform the response object's `message` to uppercase if the variable equals `uppercase`
 
-The response object should either be `{"message": "Hello json"}` or `{"message": "HELLO JSON"}` depending on the `MESSAGE_STYLE` value
+The response object should either be `{"message": "Hello json"}` or `{"message": "HELLO JSON"}` depending on the `MESSAGE_STYLE` value.  
+
+The `dotenv` package needs to be included in our `package.json` file. It loads environment variables from our `.env` file into `process.env`.  
+At the top of our `myApp.js` file, we need to add `require('dotenv').config()` to load the environment variables.
 
 
 ---
