@@ -52,6 +52,13 @@ The second line **creates an instance of an Express application**:
 - The `express()` function is a top-level function exported by the Express module.
 - The `app` variable is now an Express application object.
 
+In the context of an Express.js application, `app` typically refers to the main application object created by calling `express()`.  
+This object contains all the settings and routes for your web application.  
+
+By assigning `app` to `module.exports`, you're making the Express application instance available to other parts of your program.  
+Node.js uses a module system to organize and share code between different files. Each file in Node.js is treated as a separate module.  
+Whatever is assigned to `module.exports` becomes available to other files that import (`require`) this module.
+
 ---
 
 An Express app object has several **methods**.  
