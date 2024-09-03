@@ -351,9 +351,47 @@ In this case, the function will be executed for all the requests, but you can al
 For example, if you want a function to be executed only for POST requests you could use `app.post(<mware-function>)`.  
 Analogous methods exist for all the HTTP verbs (GET, DELETE, PUT, ...).  
 
-We will build a simple logger. For every request, it should log to the console a string taking the following format:  
+We will build a simple logger. For every request, it should log to the console a string taking the following format: `method path - ip`  
+An example would look like this: `GET /json - ::ffff:127.0.0.1`  
+- You can get the request method (http verb), the relative route path, and the caller's ip from the request object using `req.method`,
+  `req.path` and `req.ip`.
+- Remember to call `next()` when you are done, or your server will be stuck forever 
 
+>[!note]
+>Express evaluates functions in the order they appear in the code. This is true for middleware too.
+>If you want it to work for all the routes, it should be mounted before them.
 
+Here's how our `myApp.js` file looks like with the request logger middleware implemented:
+```js
+require('dotenv').config()
+
+let express = require('express');
+let app = express();
+
+let absolutePath = __dirname + "/views/index.html"
+app.get("/", (req, res) => {
+    res.sendFile(absolutePath);
+});
+
+app.use("/", (req, res, next) => {
+    let string = req.method + " " + req.path + " - " + req.ip;
+    console.log(string);
+    next();
+});
+
+app.use("/public", express.static(__dirname + "/public"));
+
+app.get("/json", (req, res) => {
+    const messageStyle = process.env.MESSAGE_STYLE;
+    let message = "Hello json";
+    if (messageStyle === "uppercase") {
+        message = message.toUpperCase();
+    }
+    res.json({"message": message});
+});
+
+module.exports = app;
+```
 
 ---
 EOF
