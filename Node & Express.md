@@ -135,7 +135,7 @@ module.exports = app;
 If you don't know what **middleware** is... don't worry, we will discuss in detail later.
 - Basically, middleware are **functions that intercept route handlers**, adding some kind of information
 - a middleware needs to be **mounted** using the method `app.use(path, middlewareFunction)` 
-- The first `path` argument is optional. If you don't pass it, the middleware will be executed for all requests
+- The first `path` argument is **optional**. If you don't pass it, the middleware will be executed for **all requests**
 
 **Example**:  
 Mount the `express.static()` middleware to the path `/public` with `app.use()`.  
@@ -143,10 +143,12 @@ The absolute path to the assets folder is `__dirname + "/public"`
 ```js
 let express = require('express');
 let app = express();
+
 let absolutePath = __dirname + '/views/index.html'
 app.get("/", (req, res) => {
     res.sendFile(absolutePath);
 });
+
 app.use("/public", express.static(__dirname + "/public"));
 
 module.exports = app;
@@ -158,7 +160,7 @@ module.exports = app;
 
 - While an HTML server serves HTML, an **API** serves data.
 - A **REST** API allows data exchange in a simple way, without the need for clients to know any detail about the server
-- The client only needs to know where the resource is (the **URL**), and the action it wants to perform on it (the **verb**)
+- The client only needs to know where the resource is (the **URL**) and the action it wants to perform on it (the **verb**)
 - The **GET** verb is used when you are **fetching** some information, without modifying anything
 - These days, the preferred data format for moving information around the Web is **JSON**
 - Simply put, JSON is a convenient way to represent a JavaScript object as a string, so it can be easily transmitted
@@ -203,7 +205,8 @@ When learning to build APIs with Node and Express, you'll encounter:
 We will create a very basic API by creating a route that responds with JSON at the path `/json`.
 - You can do it as usual, with the `app.get()` method
 - inside the route handler, use the method `res.json()`, passing in an object as an argument
-  - this method converts a javaScript object into a string,
+  - This method closes the request-response loop, returning the data  
+  - Behind the scenes, this method converts a javaScript object into a string
   - then sets the appropriate headers to tell your browser that you are serving JSON,
   - and finally sends the data back
 - A valid JavaScript object has the usual structrure `{key: data}`
@@ -211,8 +214,7 @@ We will create a very basic API by creating a route that responds with JSON at t
   - `data` can also be a variable or the result of a function call, in which case it's evaluated before being converted into a string
 
 **Example**:  
-Serve the object `{"message": "Hello json"}` as a response, in JSON format, to GET requests to the `/json` route.  
-Then point your browser to `your-app-url/json`, the endpoint `/json` should serve the JSON object {"message": "Hello json"}.
+Serve the object `{"message": "Hello json"}` as a response, in JSON format, to GET requests to the `/json` route: 
 ```js
 let express = require('express');
 let app = express();
@@ -227,6 +229,7 @@ app.get("/json", (req, res) => {
 
 module.exports = app;
 ```
+Then point your browser to `your-app-url/json`, the endpoint `/json` should serve the JSON object {"message": "Hello json"}.
 
 ---
 
@@ -236,9 +239,7 @@ module.exports = app;
 - This file is usually a simple text file containing **key-value pairs** where each line represents a single environment variable
   - **KEY**: The name of the environment variable.
   - **VALUE**: The value assigned to that variable. 
-- Since `.env` files are designed to be compatible with shell syntax, we generally don't need to wrap names or values in quotes
-- This `.env` file is **secret**, no one but you can access it
-- and it can be used to store data that you want to keep private or hidden
+- This `.env` file is **secret**, no one but you can access it, and it can be used to store data that you want to keep private or hidden
 - For example, you can store **API keys** from external services or your **database URI** (uniform resource identifier)
 - You can also use it to store **configuration options**
   - by setting configuration options, you can change the behavior of your app, without the need to rewrite some code
@@ -254,7 +255,9 @@ module.exports = app;
 - The `process.env` object is a global Node object, and variables are passed as strings
 - By convention, the environment variable names are all **uppercase**, with words separated by an **underscore**
 - It's also important to note that there cannot be space around the equals sign when you assign values to variables
-  - _example_: `VAR_NAME=value`
+  - Example: `VAR_NAME=value`
+- Since `.env` files are designed to be compatible with shell syntax, we generally don't need to wrap names or values in quotes
+- Usually, you will put each variable definition on a separate line
 
 ---
 
@@ -263,10 +266,6 @@ module.exports = app;
 To do that, we will:
 - create an `.env` file to the root of our project directory
 - store the variable `MESSAGE_STYLE=uppercase` in this file
-
-```env
-MESSAGE_STYLE=uppercase
-```
 
 Then, in the `/json` GET route handler we've created earlier, we should: 
 - access `process.env.MESSAGE_STYLE` and transform the response object's `message` to uppercase if the variable equals `uppercase`
@@ -296,7 +295,7 @@ app.get("/json", (req, res) => {
 
 module.exports = app;
 ```
-The response object should either be `{"message": "Hello json"}` or `{"message": "HELLO JSON"}` depending on the `MESSAGE_STYLE` value.  
+The response object should either be `{"message": "Hello json"}` or `{"message": "HELLO JSON"}`, depending on the `MESSAGE_STYLE` value.  
 
 The `dotenv` package needs to be included in our `package.json` file.  
 It loads the environment variables from our `.env` file into `process.env`.  
