@@ -272,33 +272,34 @@ Then, in the `/json` GET route handler we've created earlier, we should:
 - At the top of our `myApp.js` file, we need to add `require('dotenv').config()` to load the environment variables.
 
 ```js
-require('dotenv').config()
+require('dotenv').config();
 
 let express = require('express');
 let app = express();
 
-let absolutePath = __dirname + "/views/index.html"
-app.get("/", (req, res) => {
+let absolutePath = __dirname + "/views/index.html";
+
+app.get("/", (req,res) => {
     res.sendFile(absolutePath);
 });
 
 app.use("/public", express.static(__dirname + "/public"));
 
 app.get("/json", (req, res) => {
-    const messageStyle = process.env.MESSAGE_STYLE;
     let message = "Hello json";
-    if (messageStyle === "uppercase") {
+    const msgCase = process.env.MESSAGE_STYLE;
+    if (msgCase === "uppercase") { 
         message = message.toUpperCase();
     }
+    console.log(message); // simple check
     res.json({"message": message});
 });
 
-module.exports = app;
+ module.exports = app;
 ```
 The response object should either be `{"message": "Hello json"}` or `{"message": "HELLO JSON"}`, depending on the `MESSAGE_STYLE` value.  
 
-The `dotenv` package needs to be included in our `package.json` file.  
-It loads the environment variables from our `.env` file into `process.env`.  
+We also need to include the `dotenv` package in our `package.json` file. It loads the environment variables from our `.env` file into `process.env`.  
 ```json
 {
   "name": "fcc-learn-node-with-express",
