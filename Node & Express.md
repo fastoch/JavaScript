@@ -295,7 +295,7 @@ app.get("/json", (req, res) => {
     res.json({"message": message});
 });
 
- module.exports = app;
+module.exports = app;
 ```
 The response object should either be `{"message": "Hello json"}` or `{"message": "HELLO JSON"}`, depending on the `MESSAGE_STYLE` value.  
 
@@ -330,7 +330,8 @@ Now it's time to see what middleware is, in more detail.
 - the **response** object 
 - and the **next function** in the application's **request-response cycle**
 
-These functions execute some code that can have side effects on the app, and usually **add information to the request or response objects**. They can also end the cycle by sending a response when some condition is met.  
+These functions execute some code that can have side effects on the app, and usually **add information to the request or response objects**.  
+They can also end the cycle by sending a response when some condition is met.  
 
 If they don't send the response when they are done, they start the execution of the next function in the stack.  
 This triggers calling the **third argument**, `next()`.
@@ -346,14 +347,14 @@ Let's suppose we mounted this function on a route. When a request matches the ro
 then it executes the next function in the stack.  
 
 To mount a middleware function at root level, you can use the `app.use(<mware-function>)` method.  
-This method executes for all HTTP methods (GET, POST, PUT, etc.) unless a specific path is specified.  
+This method executes for all HTTP methods (GET, POST, PUT, etc.), unless a specific path is specified.  
 In this case, the function will be executed for all the requests, but you can also set more specific conditions.  
 For example, if you want a function to be executed only for POST requests you could use `app.post(<mware-function>)`.  
 Analogous methods exist for all the HTTP verbs (GET, DELETE, PUT, ...).  
 
 We will build a simple logger. For every request, it should log to the console a string taking the following format: `method path - ip`  
 An example would look like this: `GET /json - ::ffff:127.0.0.1`  
-- You can get the request method (http verb), the relative route path, and the caller's ip from the request object using `req.method`,
+- You can get the request method (http verb), the relative route path, and the caller's IP from the request object using `req.method`,
   `req.path` and `req.ip`.
 - Remember to call `next()` when you are done, or your server will be stuck forever 
 
@@ -363,35 +364,41 @@ An example would look like this: `GET /json - ::ffff:127.0.0.1`
 
 Here's how our `myApp.js` file looks like with the request logger middleware implemented:
 ```js
-require('dotenv').config()
+require('dotenv').config();
 
 let express = require('express');
 let app = express();
 
-let absolutePath = __dirname + "/views/index.html"
-app.get("/", (req, res) => {
-    res.sendFile(absolutePath);
+app.use("/", (req, res, next) => {
+    console.log(`${req.method} ${req.path} - ${req.ip}`); 
+    next();
 });
 
-app.use("/", (req, res, next) => {
-    let string = req.method + " " + req.path + " - " + req.ip;
-    console.log(string);
-    next();
+let absolutePath = __dirname + "/views/index.html";
+app.get("/", (req,res) => {
+    res.sendFile(absolutePath);
 });
 
 app.use("/public", express.static(__dirname + "/public"));
 
 app.get("/json", (req, res) => {
-    const messageStyle = process.env.MESSAGE_STYLE;
     let message = "Hello json";
-    if (messageStyle === "uppercase") {
+    const msgCase = process.env.MESSAGE_STYLE;
+    if (msgCase === "uppercase") { 
         message = message.toUpperCase();
     }
+    console.log(message); // simple check
     res.json({"message": message});
 });
 
 module.exports = app;
 ```
+
+---
+
+## Chain middleware to create a time server
+
+
 
 ---
 EOF
