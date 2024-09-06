@@ -437,6 +437,13 @@ app.get('/now', (req, res, next) => {
 });
 ```
 
+---
+
+## Get Route Parameter Input from the client
+
+When building an API, 
+
+
 
 ---
 EOF
