@@ -398,7 +398,8 @@ module.exports = app;
 
 ## Chain middleware to create a time server
 
-
+- Middleware can be mounted at a specific route using `app.METHOD(path, middlewareFunction)`
+- 
 
 ---
 EOF
