@@ -447,7 +447,19 @@ let us know which user they're interested in.
 One possible way to achieve this result is by using **route parameters**.  
 
 Route parameters are named segments of the **URL**, delimited by **slashes** `/`.  
-Each segment captures the value of the part of the URL 
+Each segment captures the value of the part of the URL which matches its position.  
+The captured values can be found in the `req.params` object.  
+
+```
+route_path:'/user/:userId/book/:bookId'
+actual_request_URL:'/user/546/book/6754'
+req.params:{userId:'546',bookId:'6754'}
+```
+
+### Exercise
+
+Build an echo server, mounted at the route `GET /:word/echo`.  
+Respond with a JSON object taking the structure 
 
 
 
