@@ -25,7 +25,7 @@ Hono is designed to be lightweight and ultra-fast, with optimized routing algori
 
 ## Platform support
 
-Hono is platform-agnostic and can run on various JavaScript runtimes, including Bun, Cloudflare Workers, Fastly Compute, Deno, and AWS Lambda.   
+Hono is platform-agnostic and can run on various JavaScript runtimes, including **Bun**, Cloudflare Workers, Fastly Compute, Deno, and AWS Lambda.   
 This flexibility allows developers to choose the best platform for their needs.  
 
 ## Edge computing
