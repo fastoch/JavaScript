@@ -461,15 +461,23 @@ req.params:{userId:'546',bookId:'6754'}
 - Build an echo server, mounted at the route `GET /:word/echo`.  
 - Respond with a JSON object taking the structure `{echo: word}`
 - You can find the word to be repeated at `req.params.word`
-- You can test your route from your browser's address bar, visiting some matching routes
+- You can test your route from your browser's address bar by visiting some matching routes
   - e.g.: `your-app-root-path/freecodecamp/echo`
+  - in my case: `https://3000-freecodecam-boilerplate-vz45yn8pqnn.ws-eu116.gitpod.io/freecodecamp/echo`
  
 **Solution**:
 ```js
-
+app.get('/:word/echo', (req, res) => {
+  const word = req.params.word; 
+  res.json({echo: word});
+});
 ```
 
+---
 
+## Get Query Parameter Input from the Client
+
+Another common way to get input from the client
 
 ---
 EOF
