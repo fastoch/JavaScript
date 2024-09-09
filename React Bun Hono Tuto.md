@@ -141,9 +141,29 @@ It doesn't matter what endpoint I go to (in my web browser), it's always going t
 
 Obviously, I could write a bunch of `if` statements in here to check what kind of requests we're getting, what the method is, what the URL is...  
 But instead, we're going to use a really nice server called Hono.  
-To do that, we're going to create an `app.ts` file
 
+To do that, we're going to create an `app.ts` file:
+```js
+import { hono } from 'hono'
 
+const app = new Hono()
+//...
+
+export default app
+```
+
+Then, in our `index.ts`, we need to import the exported app:
+```js
+import app from './app'
+
+Bun.serve({
+  fetc: app.fetch;
+});
+
+console.log("Server running!"); // visible from the console
+```
+And as you can see, instead of implementing a custom `fetch()` function, we'll use the built-in Hono `app.fetch`.  
+This way, all HTTP requests will be handled by the Hono library.
 
 
 ---
