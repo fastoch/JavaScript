@@ -124,7 +124,18 @@ In the `package.json` file let's create 2 scripts:
 ```
 Now, I can run the app in watch mode by using `bun dev`.  
 
-To make it an HTTP server (backend app): 
+To make it an HTTP server (backend app), use `Bun.serve()` in your `index.ts`:
+```ts
+Bun.serve({
+  port: 8080,
+  hostname: "mydomain.com",
+  fetch(req) {
+    return new Response("404!");
+  },
+});
+
+console.log("Hello via Bun!");
+```
 
 
 
