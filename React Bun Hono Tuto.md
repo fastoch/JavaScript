@@ -24,6 +24,15 @@ The database is going to be a relational database, and it doesn't really matter 
 - In this tutorial, we'll be using **Neon PG**, a serverless Postgres database platform
 - and we're going to use **Drizzle ORM** since it's the best way to interact with a relational database from a TypeScript application
 
+**NOTE**:  
+Towards the end of the video, we'll see a little bit more advanced stuff such as **Frontend caching** & **Optimistic updates** .  
+
+---
+
+### A diagram of our App's architecture
+
+![image](https://github.com/user-attachments/assets/a2eaacc4-bcc3-43ed-adb8-7fec8440b44b)
+
 ---
 
 ### Bun
@@ -78,8 +87,11 @@ While originally created for React, it now offers adapters for multiple framewor
 
 ---
 
+## Set up Bun and Hono
+
+
 
 
 
 ---
-@0/218min
+@2/218min
