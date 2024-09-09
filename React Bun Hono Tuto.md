@@ -2,6 +2,10 @@
 
 src = https://www.youtube.com/watch?v=jXyTIQOfTTk&t=89s  
 
+This tutorial is meant to be for any Web Dev, junior or advanced, that wants to learn how to build a modern React App using the following Tech Stack:
+- **Bun & Hono** in the backend
+- **Vite & React** in the frontend
+
 ---
 
 ## Goal & Web Technologies
@@ -11,13 +15,14 @@ Build a full stack modern React App using the following Web technologies:
 - The front-end is going to be a **Vite** + **React** App, which will be **all client-side rendered**
   - **Tailwind** for styling the front-end
   - All of the **TanStack** libraries for querying, routing and forms
-- All of this will work with React 18 or 19
 
-The Front-end is going to make HTTP requests to the Back-end using Hono RPC so we get TypeScript safety there.  
+All of this will work with React 18 or 19.  
+
+The Front-end is going to make HTTP requests to the Back-end using **Hono RPC** so we get TypeScript safety there.  
 **Hono's RPC** (Remote Procedure Call) feature allows sharing API specifications between the server and client, enabling type-safe API calls.  
 
 - The Front-end and the Back-end are both going to use **Zod** for **validation**.
-- We're going to use **Kinde Auth** as the fully managed Authentication service
+- We're going to use **Kinde Auth** as a fully managed Authentication service
 - We're going to set up authorized routes on the front-end and the back-end so only logged in users can perform certain tasks
 
 The database is going to be a relational database, and it doesn't really matter which SQL database you use for this.  
@@ -89,9 +94,35 @@ While originally created for React, it now offers adapters for multiple framewor
 
 ## Set up Bun and Hono
 
+We're going to use Bun as the JS runtime, which is a great alternative to Node.js.  
+- To install it on Linux: `curl -fsSL https://bun.sh/install | bash`  
+- create a new directory for this application: `mkdir app`
+- Browse to this new folder: `cd app`
+- In here, set up a new Bun server: `bun init`
+- Leave settings to defaults
+- Open this up in VS Code: `code .`
+- The `index.ts` file is going to be the **entry point** of the application, so to run the app in watch mode: `bun --watch index.ts`
+
+In the `package.json` file let's create 2 scripts: 
+```json
+{
+  "name": "app",
+  "module": "index.ts",
+  "type": "module",
+  "script": {
+    
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
+```
 
 
 
 
 ---
-@2/218min
+@4/218min
