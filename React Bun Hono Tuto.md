@@ -101,7 +101,8 @@ We're going to use Bun as the JS runtime, which is a great alternative to Node.j
 - In here, set up a new Bun server: `bun init`
 - Leave settings to defaults
 - Open this up in VS Code: `code .`
-- The `index.ts` file is going to be the **entry point** of the application, so to run the app in watch mode: `bun --watch index.ts`
+- The `index.ts` file is going to be the **entry point** of the application
+  - to run the app in watch mode: `bun --watch index.ts` (watch for changes and restart the app)
 
 In the `package.json` file let's create 2 scripts: 
 ```json
@@ -109,8 +110,9 @@ In the `package.json` file let's create 2 scripts:
   "name": "app",
   "module": "index.ts",
   "type": "module",
-  "script": {
-    
+  "scripts": {
+    "start": "bun index.ts",
+    "dev": "bun --watch index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
