@@ -105,7 +105,7 @@ We're going to use Bun as the JS runtime, which is a great alternative to Node.j
   - to run the app in watch mode, the default cmd is: `bun --watch index.ts` (watch for changes and restart the app)
 
 In the `package.json` file let's create 2 scripts: 
-```json
+```js
 {
   "name": "app",
   "module": "index.ts",
@@ -124,21 +124,27 @@ In the `package.json` file let's create 2 scripts:
 ```
 Now, I can run the app in watch mode by using `bun dev`.  
 
+---
+
 To make it an HTTP server (backend app), use `Bun.serve()` in your `index.ts`:
-```ts
+```js
 Bun.serve({
-  port: 8080,
-  hostname: "mydomain.com",
   fetch(req) {
-    return new Response("404!");
+    return new Response("Hello from Bun server!"); // visible from a web browser at localhost:3000
   },
 });
 
-console.log("Hello via Bun!");
+console.log("Server running!"); // visible from the console
 ```
+This `fetch()` function is going to handle every single HTTP request to our server.  
+It doesn't matter what endpoint I go to (in my web browser), it's always going to be served up by that function, and I'll always get the same "Hello from Bun server!" message.  
+
+Obviously, I could write a bunch of `if` statements in here to check what kind of requests we're getting, what the method is, what the URL is...  
+But instead, we're going to use a really nice server called Hono.  
+To do that, we're going to create an `app.ts` file
 
 
 
 
 ---
-@4/218min
+@6/218min
