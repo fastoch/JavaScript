@@ -7,8 +7,22 @@ src = https://www.youtube.com/watch?v=jXyTIQOfTTk&t=89s
 ## Goal & Web Technologies
 
 Build a full stack modern React App using the following Web technologies:
-- In the back-end, we're going to be using **Bun** and the **Hono** framework
-- 
+- In the back-end, we're going to be using **Bun** and the **Hono** framework (which works with all JS runtimes)
+- The front-end is going to be a **Vite** + **React** App, which will be **all client-side rendered**
+  - **Tailwind** for styling the front-end
+  - All of the **TanStack** libraries for querying, routing and forms
+- All of this will work with React 18 or 19
+
+The Front-end is going to make HTTP requests to the Back-end using Hono RPC so we get TypeScript safety there.  
+**Hono's RPC** (Remote Procedure Call) feature allows sharing API specifications between the server and client, enabling type-safe API calls.  
+
+- The Front-end and the Back-end are both going to use **Zod** for **validation**.
+- We're going to use **Kinde Auth** as the fully managed Authentication service
+- We're going to set up authorized routes on the front-end and the back-end so only logged in users can perform certain tasks
+
+The database is going to be a relational database, and it doesn't really matter which SQL database you use for this.  
+- In this tutorial, we'll be using **Neon**, a serverless Postgres database platform
+- and we're going to use Drizzle ORL because 
 
 ---
 
@@ -54,7 +68,16 @@ more established frameworks like **Express**.js, especially in **edge computing*
 
 ---
 
-## 
+### TanStack
+
+TanStack Query is a powerful **data fetching** and **state management** library for web applications.  
+It is an asynchronous state management library that originated in the React ecosystem.
+It provides tools for fetching, caching, synchronizing and updating server state.  
+
+While originally created for React, it now offers adapters for multiple frameworks including React, Vue, Angular and others.
+
+---
+
 
 
 
