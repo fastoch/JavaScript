@@ -21,8 +21,8 @@ The Front-end is going to make HTTP requests to the Back-end using Hono RPC so w
 - We're going to set up authorized routes on the front-end and the back-end so only logged in users can perform certain tasks
 
 The database is going to be a relational database, and it doesn't really matter which SQL database you use for this.  
-- In this tutorial, we'll be using **Neon**, a serverless Postgres database platform
-- and we're going to use Drizzle ORL because 
+- In this tutorial, we'll be using **Neon PG**, a serverless Postgres database platform
+- and we're going to use **Drizzle ORM** since it's the best way to interact with a relational database from a TypeScript application
 
 ---
 
