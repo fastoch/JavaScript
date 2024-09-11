@@ -172,7 +172,7 @@ console.log("Server running!"); // visible from the console
 And as you can see, instead of implementing a custom `fetch()` function, we'll use the built-in Hono `app.fetch` function.  
 This way, all HTTP requests will be handled by the Hono library.  
 
-After that, we can set up our endpoints in the usual way:
+After that, we can set up our endpoints in the usual way in our `app.ts`:
 ```js
 import { hono } from 'hono'
 
@@ -196,8 +196,8 @@ To know more about this Hono `Context` object: https://hono.dev/docs/api/context
 
 We can also add a **logger** in our `app.ts` file (https://hono.dev/docs/middleware/builtin/logger):
 ```js
-import { hono } from 'hono'
-import { logger } from 'hono/logger'
+import { hono } from 'hono';
+import { logger } from 'hono/logger';
 
 const app = new Hono()
 
@@ -219,27 +219,57 @@ This is very helpful when we try to debug the HTTP requests.
 
 - we create a dedicated folder at the root of our project's file tree, and we name it "routes"
 - inside this folder, we create a file named `expenses.ts`
-- in this file, we will add the following code:
+- in this file, we will define all the expense routes:
 ```js
-import { hono } from 'hono'
+import { hono } from 'hono';
 
 export const expensesRoute = new Hono()
-.get("/", (c) => {
-  return c.json({ expenses: [] })
-})
-.post("/", (c) => {
-  return c.json({})
-})
-// .delete
-// .put
+  .get("/", (c) => {
+    return c.json({ expenses: [] });
+  });
+  .post("/", (c) => {
+    return c.json({});
+  });
+  // .delete
+  // .put
 ```
-The first request (`.get`) returns an object with the key 'expenses' and then an array of the expenses that we get from the database.  
-The POST request creates a brand new expense (which is an empty object for now).
 
+The first endpoint (`.get`) returns an object with the key 'expenses' and then an array of the expenses that we get from the database.  
+The second endpoint (`.post`) creates a brand new expense (which is an empty object for now).
 
+Once I've defined all the expense routes in `expenses.ts`, I'm going to import them into `app.ts` with:   
+`import { expensesRoute } from './routes/expenses';`
 
+And then, I will have my app serve that up over `app.route("/api/expenses", expensesRoute)`
 
+My `app.ts` now looks like this:
+```js
+import { hono } from 'hono';
+import { logger } from 'hono/logger';
+import { expensesRoute } from './routes/expenses';
 
+const app = new Hono()
+
+app.use(logger());
+
+app.get('/test', (c) => {
+  return c.json({"message": "test"})
+});
+
+app.route("/api/expenses", expensesRoute);
+
+export default app;
+```
+
+Now, if I go to localhost:3000/api/expenses, requests will be handled as defined in `expenses.ts`, depending on the type of request (get, post, etc.).  
 
 ---
-@9/218min
+
+In my `expenses.ts`, I could add a fake expenses array and define the Expense type:
+```js
+
+
+```
+
+---
+@10/218min
