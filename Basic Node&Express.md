@@ -531,7 +531,9 @@ It should print out: `{"name":"Fabrice Pustoch"}`
 - In REST convention, POST is used to send data to create new items in the database (a new user, a new blog post...)
 - we don't have a database in this tutorial, but we still need to learn how to handle POST requests
 
-In this kind of requests, the data doesn't appear in the URL, it is **hidden** in the request body.
+In this kind of requests, the data doesn't appear in the URL, it is **hidden** in the request body.  
+The **body** is a part of the HTTP request, also called the **payload**.  
+
 
 
 ---
