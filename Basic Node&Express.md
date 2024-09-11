@@ -465,7 +465,7 @@ req.params:{userId:'546',bookId:'6754'}
   - e.g.: `your-app-root-path/freecodecamp/echo`
   - in my case: `https://3000-freecodecam-boilerplate-vz45yn8pqnn.ws-eu116.gitpod.io/freecodecamp/echo`
  
-**Solution**:
+### Solution
 ```js
 app.get('/:word/echo', (req, res) => {
   const word = req.params.word; 
@@ -489,6 +489,24 @@ Another common way to get input from the client is by encoding the data after th
 route_path:'/library'
 actual_request_URL:'/library?userId=546&bookId=6754'
 req.query:{userId:'546',bookId:'6754'}
+```
+
+### Exercise
+
+- Build an API endpoint, mounted at `GET /name`
+- Respond with a JSON document taking the structure `{name: 'firstname lastname'}`
+- The first and last name parameters should be encoded in a query string, e.g. `?first=firstname&last=lastname`
+
+**NOTE**:  
+In the next exercise, you'll receive data from a POST request, at the same `/name` route path.  
+If you want, you can use the method `app.route(path).get(handler).post(handler)`.  
+This syntax allows you to chain different verb handlers on the same route path.  
+This way, you can save a bit of typing, and have cleaner code.
+
+### Solution
+
+```js
+
 ```
 
 
