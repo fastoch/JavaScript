@@ -526,7 +526,12 @@ It should print out: `{"name":"Fabrice Pustoch"}`
 
 # Use body-parser to parse POST requests
 
+- Besides GET, there's another common HTTP verb, it is POST.  
+- POST is the default method used to send client data with HTML forms.
+- In REST convention, POST is used to send data to create new items in the database (a new user, a new blog post...)
+- we don't have a database in this tutorial, but we still need to learn how to handle POST requests
 
+In this kind of requests, the data doesn't appear in the URL, it is **hidden** in the request body.
 
 
 ---
