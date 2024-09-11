@@ -66,7 +66,7 @@ One fundamental method is `app.listen(port)`. It tells your server to listen on 
 
 ---
 
-## Let's serve our first string!  
+# Let's serve our first string!  
 
 In Express, routes take the following structure: `app.METHOD(PATH, HANDLER)`  
 - `METHOD` is an http method in lower case
@@ -99,7 +99,7 @@ Note that we used an **arrow function** to write the **handler**.
 
 ---
 
-## Serve an HTML file
+# Serve an HTML file
 
 - You can respond to requests with a file, using the `res.sendFile(path)` method  
 - You can put it inside the `app.get('/', (re, res) => {...})` route handler
@@ -126,7 +126,7 @@ module.exports = app;
 
 ---
 
-## Serve Static Assets
+# Serve Static Assets
 
 - An HTML server usually has one or more directories that are accessible by the user.
 - You can place there the static assets needed by your application (stylesheets, scripts, images)
@@ -157,7 +157,7 @@ module.exports = app;
 
 ---
 
-## Serve JSON on a specific Route
+# Serve JSON on a specific Route
 
 - While an HTML server serves HTML, an **API** serves data.
 - A **REST** API allows data exchange in a simple way, without the need for clients to know any detail about the server
@@ -182,7 +182,7 @@ APIs serve as **an interface between different software components**, enabling t
 
 In web development, APIs facilitate communication between a client (like a web browser or mobile app) and a server.
 
-### A word about RESTful APIs
+## A word about RESTful APIs
 
 REST is an architectural style for designing networked applications.  
 RESTful APIs:
@@ -201,7 +201,7 @@ When learning to build APIs with Node and Express, you'll encounter:
 
 ---
 
-### Let's create a simple API 
+## Let's create a simple API 
 
 We will create a very basic API by creating a route that responds with JSON at the path `/json`.
 - You can do it as usual, with the `app.get()` method
@@ -234,7 +234,7 @@ Then point your browser to `your-app-url/json`, the endpoint `/json` should serv
 
 ---
 
-## Use the .env file
+# Use the .env file
 
 - The `.env` file is a hidden file that is used to pass environment variables to your application
 - This file is usually a simple text file containing **key-value pairs** where each line represents a single environment variable
@@ -262,7 +262,7 @@ Then point your browser to `your-app-url/json`, the endpoint `/json` should serv
 
 ---
 
-### Let's add an environment variable as a configuration option
+## Let's add an environment variable as a configuration option
 
 To do that, we will:
 - create an `.env` file to the root of our project directory
@@ -321,7 +321,7 @@ We also need to include the `dotenv` package in our `package.json` file. It load
 
 ---
 
-## Implement a root-level request logger middleware
+# Implement a root-level request logger middleware
 
 Earlier, you were introduced to the `express.static()` middleware function.  
 Now it's time to see what middleware is, in more detail.  
@@ -352,6 +352,8 @@ This method executes for all HTTP methods (GET, POST, PUT, etc.), unless a speci
 In this case, the function will be executed for all the requests, but you can also set more specific conditions.  
 For example, if you want a function to be executed only for POST requests you could use `app.post(<mware-function>)`.  
 Analogous methods exist for all the HTTP verbs (GET, DELETE, PUT, ...).  
+
+---
 
 We will build a simple logger. For every request, it should log to the console a string taking the following format: `method path - ip`  
 An example would look like this: `GET /json - ::ffff:127.0.0.1`  
@@ -397,7 +399,7 @@ module.exports = app;
 
 ---
 
-## Chain middleware to create a time server
+# Chain middleware to create a time server
 
 - Middleware can be mounted at a specific route using `app.METHOD(path, middlewareFunction)`
 - Middleware can also be chained within a route definition
@@ -420,12 +422,14 @@ At each point of the middleware stack, you can block the execution of the curren
 specifically designed to handle errors. Or you can pass control to the next matching route, to handle special cases.  
 We will how in the "Advanced Express" section.
 
-### Exercise
+## Exercise
 
-In the route `app.get('/now', ...)`, chain a middleware function and the final handler.  
-In the middleware function, you should add the current time to the request object in the `req.time` key.  
-You can use `new Date().toString()`.  
-In the handler, respond with a JSON object taking the structure {time: req.time}.  
+- In the route `app.get('/now', ...)`, chain a middleware function and the final handler.  
+- In the middleware function, you should add the current time to the request object in the `req.time` key.  
+- You can use `new Date().toString()`.  
+- In the handler, respond with a JSON object taking the structure {time: req.time}.  
+
+## Solution
 
 This time, I won't display the whole `myApp.js` file content, only the block of code that interests us:
 ```js
@@ -439,7 +443,7 @@ app.get('/now', (req, res, next) => {
 
 ---
 
-## Get Route Parameter Input from the client
+# Get Route Parameter Input from the client
 
 When building an API, we have to allow users to communicate to us what they want to get from our service.  
 For example, if the client is requesting information about a user stored in the database, they need a way to  
@@ -456,7 +460,7 @@ actual_request_URL:'/user/546/book/6754'
 req.params:{userId:'546',bookId:'6754'}
 ```
 
-### Exercise
+## Exercise
 
 - Build an echo server, mounted at the route `GET /:word/echo`.  
 - Respond with a JSON object taking the structure `{echo: word}`
@@ -465,7 +469,7 @@ req.params:{userId:'546',bookId:'6754'}
   - e.g.: `your-app-root-path/freecodecamp/echo`
   - in my case: `https://3000-freecodecam-boilerplate-vz45yn8pqnn.ws-eu116.gitpod.io/freecodecamp/echo`
  
-### Solution
+## Solution
 ```js
 app.get('/:word/echo', (req, res) => {
   const word = req.params.word; 
@@ -475,7 +479,7 @@ app.get('/:word/echo', (req, res) => {
 
 ---
 
-## Get Query Parameter Input from the Client
+# Get Query Parameter Input from the Client
 
 Another common way to get input from the client is by encoding the data after the route path, using a **query string**.  
 - The query string is delimited by a question mark `?`, and includes `field=value` couples.  
@@ -491,7 +495,7 @@ actual_request_URL:'/library?userId=546&bookId=6754'
 req.query:{userId:'546',bookId:'6754'}
 ```
 
-### Exercise
+## Exercise
 
 - Build an API endpoint, mounted at `GET /name`
 - Respond with a JSON document taking the structure `{name: 'firstname lastname'}`
@@ -503,11 +507,25 @@ If you want, you can use the method `app.route(path).get(handler).post(handler)`
 This syntax allows you to chain different verb handlers on the same route path.  
 This way, you can save a bit of typing, and have cleaner code.
 
-### Solution
+## Solution
 
 ```js
-
+app.get('/name', (req, res) => {
+    const { first, last } = req.query;
+    if (!first || !last) {
+        return res.status(400).json({ error: 'Both first and last name are required' });
+    }
+    res.json({ name:  `${first} ${last}` });
+});
 ```
+We can check the result with this URL: https://3000-freecodecam-boilerplate-vz45yn8pqnn.ws-eu116.gitpod.io/name?first=Fabrice&last=Pustoch  
+It should print out: `{"name":"Fabrice Pustoch"}`  
+**Note**: it would also work with an apostrophe at Pustoc'h
+
+---
+
+# Use body-parser to parse POST requests
+
 
 
 
