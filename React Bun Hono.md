@@ -8,7 +8,7 @@ This tutorial is meant to be for any Web Dev, junior or advanced, that wants to 
 
 ---
 
-## Goal & Web Technologies
+# Goal & Web Technologies
 
 Build a full stack modern React App using the following Web technologies:
 - In the back-end, we're going to be using **Bun** and the **Hono** framework (which works with all JS runtimes)
@@ -34,13 +34,13 @@ Towards the end of the video, we'll see a little bit more advanced stuff such as
 
 ---
 
-### A diagram of our App's architecture
+## A diagram of our App's architecture
 
 ![image](https://github.com/user-attachments/assets/a2eaacc4-bcc3-43ed-adb8-7fec8440b44b)
 
 ---
 
-### Bun
+## Bun
 
 Bun is an all-in-one **JavaScript runtime** and **toolkit** that aims to streamline and enhance JavaScript and TypeScript development.  
 Bun is a **fast** JavaScript runtime designed as a drop-in replacement for Node.js.  
@@ -55,7 +55,7 @@ It's written in **Zig** and powered by **JavaScriptCore**, offering significantl
 
 ---
 
-### Hono
+## Hono
 
 Hono is a lightweight and ultrafast **web framework** designed for building applications across various JavaScript runtimes, including:
 - Cloudflare Workers,
@@ -82,7 +82,7 @@ more established frameworks like **Express**.js, especially in **edge computing*
 
 ---
 
-### TanStack
+## TanStack
 
 TanStack Query is a powerful **data fetching** and **state management** library for web applications.  
 It is an asynchronous state management library that originated in the React ecosystem.
@@ -92,7 +92,7 @@ While originally created for React, it now offers adapters for multiple framewor
 
 ---
 
-## Set up Bun and Hono
+# Set up Bun and Hono
 
 We're going to use Bun as the JS runtime, which is a great alternative to Node.js.  
 - To install it on Linux: `curl -fsSL https://bun.sh/install | bash`  
@@ -140,9 +140,9 @@ This `fetch()` function is going to handle every single HTTP request to our serv
 It doesn't matter what endpoint I go to (in my web browser), it's always going to be served up by that function, and I'll always get the same "Hello from Bun server!" message.  
 
 Obviously, I could write a bunch of `if` statements in here to check what kind of requests we're getting, what the method is, what the URL is...  
-But instead, we're going to use a really nice server called Hono.  
+But instead, we're going to use a really nice server called **Hono**.  
 
-To do that, we're going to create an `app.ts` file:
+To do that, we're going to create an `app.ts` file and import the hono module:
 ```js
 import { hono } from 'hono'
 
@@ -152,7 +152,12 @@ const app = new Hono()
 export default app
 ```
 
-Then, in our `index.ts`, we need to import the exported app:
+You might need to install hono: 
+- stop the server with Ctrl+C
+- Run `bun install hono`
+- restart the server with `bun dev`
+
+Then, in our `index.ts`, we need to import the exported app (since index.tx is the app's entry point):
 ```js
 import app from './app'
 
@@ -162,9 +167,41 @@ Bun.serve({
 
 console.log("Server running!"); // visible from the console
 ```
-And as you can see, instead of implementing a custom `fetch()` function, we'll use the built-in Hono `app.fetch`.  
-This way, all HTTP requests will be handled by the Hono library.
+And as you can see, instead of implementing a custom `fetch()` function, we'll use the built-in Hono `app.fetch` function.  
+This way, all HTTP requests will be handled by the Hono library.  
+
+After that, we can set up our endpoints in the usual way:
+```js
+import { hono } from 'hono'
+
+const app = new Hono()
+
+app.get('/test', c => {
+  return c.json({"message": "test"})
+})
+
+export default app
+```
+In this example, c is a `Context` object which will be responsible for handling the HTTP request and response.  
+So we can get the request data from this object, but also respond with things like JSON or HTML or whatever we want.  
+
+To test the above route, open a web browser and enter this URL: `localhost:3000/test`  
+This should display the custom object `{"message": "test}`  
+
+And if we go to a route that we haven't defined, we will get the Hono '404 Not Found' message.  
+
+To know more about this Hono `Context` object: https://hono.dev/docs/api/context  
 
 
 ---
-@6/218min
+
+# Adding Routes
+
+
+
+
+
+
+
+---
+@8/218min
