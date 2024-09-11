@@ -450,7 +450,7 @@ Route parameters are named segments of the **URL**, delimited by **slashes** `/`
 Each segment captures the value of the part of the URL which matches its position.  
 The captured values can be found in the `req.params` object.  
 
-```
+```js
 route_path:'/user/:userId/book/:bookId'
 actual_request_URL:'/user/546/book/6754'
 req.params:{userId:'546',bookId:'6754'}
@@ -477,7 +477,21 @@ app.get('/:word/echo', (req, res) => {
 
 ## Get Query Parameter Input from the Client
 
-Another common way to get input from the client
+Another common way to get input from the client is by encoding the data after the route path, using a **query string**.  
+- The query string is delimited by a question mark `?`, and includes `field=value` couples.  
+- Each couple is separated by an ampersand `&`
+- Express can parse the data from the query string, and populate the object `req.query`
+- Some characters, like the percent `%`, cannot be in URLs and have to be encoded in a different format before you can send them
+- If you use the API directly from JavaScript code, you can use specific methods to encode/decode these characters
+
+**Example**:
+```js
+route_path:'/library'
+actual_request_URL:'/library?userId=546&bookId=6754'
+req.query:{userId:'546',bookId:'6754'}
+```
+
+
 
 ---
 EOF
