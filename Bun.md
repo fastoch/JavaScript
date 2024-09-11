@@ -6,7 +6,7 @@ sources:
 
 # Introduction
 
-Welcome this Bun crash course.  
+Welcome to this Bun crash course.  
 Bun is a cutting-edge toolkit designed to supercharge your JavaScript and TypeScript applications.  
 
 With its lightning-fast startup times, built-in support for TypeScript and JSX, and a range of powerful  
