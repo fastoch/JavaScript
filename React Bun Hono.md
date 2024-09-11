@@ -6,6 +6,8 @@ This tutorial is meant to be for any Web Dev, junior or advanced, that wants to 
 - **Bun & Hono** in the backend
 - **Vite & React** in the frontend
 
+We're going to develop an **expense tracker** app.
+
 ---
 
 # Goal & Web Technologies
@@ -192,11 +194,47 @@ And if we go to a route that we haven't defined, we will get the Hono '404 Not F
 
 To know more about this Hono `Context` object: https://hono.dev/docs/api/context  
 
+We can also add a **logger** in our `app.ts` file (https://hono.dev/docs/middleware/builtin/logger):
+```js
+import { hono } from 'hono'
+import { logger } from 'hono/logger'
+
+const app = new Hono()
+
+app.get('/test', (c) => {
+  return c.json({"message": "test"})
+})
+
+app.use(logger())
+
+export default app
+```
+We are now able to see (in the console) the request coming in and the response going out:  
+![image](https://github.com/user-attachments/assets/04e171a1-04f8-4904-a779-d240470c4f91)  
+This is very helpful when we try to debug the HTTP requests.
 
 ---
 
 # Adding Routes
 
+- we create a dedicated folder at the root of our project's file tree, and we name it "routes"
+- inside this folder, we create a file named `expenses.ts`
+- in this file, we will add the following code:
+```js
+import { hono } from 'hono'
+
+export const expensesRoute = new Hono()
+.get("/", (c) => {
+  return c.json({ expenses: [] })
+})
+.post("/", (c) => {
+  return c.json({})
+})
+// .delete
+// .put
+```
+The first request (`.get`) returns an object with the key 'expenses' and then an array of the expenses that we get from the database.  
+The POST request creates a brand new expense (which is an empty object for now).
 
 
 
@@ -204,4 +242,4 @@ To know more about this Hono `Context` object: https://hono.dev/docs/api/context
 
 
 ---
-@8/218min
+@9/218min
