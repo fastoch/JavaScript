@@ -299,7 +299,11 @@ The way we insert data in a POST request is through `c.req.json()`, then we stor
 What I expect is for someone to post a new Expense object, but I need a way of checking that the data that is coming over the POST request is actually a valid Expense object.  
 
 And the way we're going to validate this data is by using the **Zod** library, which is pretty much a standard tool for any TypeScript developer.  
+Zod is a TypeScript-first schema validation library.  
 Alternative to Zod: https://www.youtube.com/watch?v=nCZ06oegzeM - **Valibot**  
+
+- to install Zod: `bun install zod`
+- import the library by adding this line at the top of each file: `import { z } from "zod";`
 
 
 
