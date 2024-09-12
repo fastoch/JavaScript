@@ -269,6 +269,8 @@ Now, if I go to localhost:3000/api/expenses, requests will be handled as defined
 
 ---
 
+## Defining and validating data types 
+
 In my `expenses.ts`, I could define the Expense type and add a fakeExpenses array as follows:
 ```js
 import { hono } from 'hono';
@@ -306,7 +308,7 @@ And the way we're going to validate this data is by using the **Zod** library, w
 Zod is a TypeScript-first schema validation library.  
 Alternative to Zod: https://www.youtube.com/watch?v=nCZ06oegzeM - **Valibot**  
 
-- to install Zod: `bun install zod`
+- to install Zod: `bun install zod` (run this cmd from the terminal while being inside the 'app' folder)
 - import the library by adding this line at the top of each file where we'll be using it: `import { z } from "zod";`
 
 With Zod, we can create a new validation object (`createPostSchema`):
@@ -350,6 +352,22 @@ export const expensesRoute = new Hono()
 - `c.req.json()` parses the JSON body of the incoming POST requests
 - I then use a Zod schema (`createPostSchema`) to validate the parsed data
 - Finally, we return a JSON response with the validated expense data
+
+---
+
+## Zod Validator Middleware
+
+All of the above works fine, but since doing this at the HTTP layer is very common, Hono has a built-in function that makes it even easier.  
+https://hono.dev/docs/guides/validation#zod-validator-middleware  
+
+- from the terminal, while being inside our 'app' project folder, run this cmd: `bun add @hono/zod-validator`
+- then, we must import the validator in our `expenses.ts` file with ``
+
+With this Hono middleware, our code would look like this:
+```js
+
+```
+
 
 
 ---
