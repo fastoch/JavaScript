@@ -265,11 +265,45 @@ Now, if I go to localhost:3000/api/expenses, requests will be handled as defined
 
 ---
 
-In my `expenses.ts`, I could add a fake expenses array and define the Expense type:
+In my `expenses.ts`, I could define the Expense type and add a fakeExpenses array as follows:
 ```js
+import { hono } from 'hono';
 
+type Expense = {
+  id: number,
+  title: string,
+  amount: number
+};
 
+const fakeExpenses: Expense[] = [
+  { id: 1, title: "Groceries", amount: 50 },
+  { id: 2, title: "Utilities", amount: 100 },
+  { id: 3, title: "Rent", amount: 1000 }
+];
+
+export const expensesRoute = new Hono()
+  .get("/", (c) => {
+    return c.json({ expenses: fakeExpenses });
+  });
+  .post("/", async (c) => {
+    const expense = await c.req.json();
+    return c.json(expense);
+  });
+  // .delete
+  // .put
 ```
+Now, if the client (web browser) makes a GET request, my app will serve up that array of 3 fake expenses.  
+And if it makes a POST request, my app will need to insert a new expense into this array.  
+
+The way we insert data in a POST request is through `c.req.json()`, then we store the data into a variable and we return it in JSON format.  
+What I expect is for someone to post a new Expense object, but I need a way of checking that the data that is coming over the POST request is actually a valid Expense object.  
+
+And the way we're going to validate this data is by using the **Zod** library, which is pretty much a standard tool for any TypeScript developer.  
+Alternative to Zod: https://www.youtube.com/watch?v=nCZ06oegzeM - **Valibot**  
+
+
+
+
 
 ---
-@10/218min
+@13/218min
