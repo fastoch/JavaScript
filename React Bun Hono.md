@@ -303,11 +303,40 @@ Zod is a TypeScript-first schema validation library.
 Alternative to Zod: https://www.youtube.com/watch?v=nCZ06oegzeM - **Valibot**  
 
 - to install Zod: `bun install zod`
-- import the library by adding this line at the top of each file: `import { z } from "zod";`
+- import the library by adding this line at the top of each file where we'll be using it: `import { z } from "zod";`
 
+With Zod, we can create a new validation object (`createPostSchema`):
+```js
+import { hono } from 'hono';
+import { z } from "zod";
 
+type Expense = {
+  id: number,
+  title: string,
+  amount: number
+};
 
+const fakeExpenses: Expense[] = [
+  { id: 1, title: "Groceries", amount: 50 },
+  { id: 2, title: "Utilities", amount: 100 },
+  { id: 3, title: "Rent", amount: 1000 }
+];
+
+const createPostSchema =
+
+export const expensesRoute = new Hono()
+  .get("/", (c) => {
+    return c.json({ expenses: fakeExpenses });
+  });
+  .post("/", async (c) => {
+    const expense = await c.req.json();
+    return c.json(expense);
+  });
+  // .delete
+  // .put
+```
+`createPostSchema` represents the structure of the data that I want when someone tries to post an expense.
 
 
 ---
-@13/218min
+@14/218min
