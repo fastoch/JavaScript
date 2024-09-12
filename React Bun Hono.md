@@ -404,9 +404,16 @@ Finally, we add the new expense to the fake database with `fakeExpenses.push({..
 
 ---
 
-Then, we can continue adding some endpoints in `expenses.ts`:
+Then, we can add an endpoint in `expenses.ts` so we can get a specific expense object out of the database:
 ```js
-
+...
+  .post("/", zValidator("json", createPostSchema), async (c) => {
+    const data = await c.req.valid("json");   // data coming over the POST request
+    const expense = createPostSchema.parse(data);   // validating the data type with Zod
+    fakeExpenses.push({...expense, id: fakeExpenses.length+1});
+    return c.json(expense);
+  });
+  .get("/:id", 
 ```
 
 ---
