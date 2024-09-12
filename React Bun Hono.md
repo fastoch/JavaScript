@@ -235,9 +235,13 @@ export const expensesRoute = new Hono()
 ```
 
 The first endpoint (`.get`) returns an object with the key 'expenses' and then an array of the expenses that we get from the database.  
-The second endpoint (`.post`) creates a brand new expense (which is an empty object for now).
+The second endpoint (`.post`) creates a brand new expense (which is an empty object for now).  
 
-Once I've defined all the expense routes in `expenses.ts`, I'm going to import them into `app.ts` with:   
+`.post()` is a method used to define a route handler for HTTP POST requests.
+
+---
+
+Once I've defined all the expenses routes in `expenses.ts`, I'm going to import them into `app.ts` with:   
 `import { expensesRoute } from './routes/expenses';`
 
 And then, I will have my app serve that up over `app.route("/api/expenses", expensesRoute)`
@@ -286,7 +290,7 @@ export const expensesRoute = new Hono()
     return c.json({ expenses: fakeExpenses });
   });
   .post("/", async (c) => {
-    const expense = await c.req.json();
+    const data = await c.req.json();
     return c.json(expense);
   });
   // .delete
@@ -322,21 +326,31 @@ const fakeExpenses: Expense[] = [
   { id: 3, title: "Rent", amount: 1000 }
 ];
 
-const createPostSchema =
+// creating a Zod object
+const createPostSchema = z.object({
+  title: z.string().min(3).max(50),     // must contain between 3 and 50 characters
+  amount: z.number().int().positive()   // must be a positive integer
+});
 
 export const expensesRoute = new Hono()
   .get("/", (c) => {
     return c.json({ expenses: fakeExpenses });
   });
   .post("/", async (c) => {
-    const expense = await c.req.json();
+    const data = await c.req.json();   // data coming over the POST request
+    const expense = createPostSchema.parse(data);   // validating the data type with Zod
     return c.json(expense);
   });
   // .delete
   // .put
 ```
-`createPostSchema` represents the structure of the data that I want when someone tries to post an expense.
+
+`createPostSchema` represents the structure of the data that I want when someone tries to post an expense.  
+- my `.post` method awaits for incoming POST requests
+- `c.req.json()` parses the JSON body of the incoming POST requests
+- I then use a Zod schema (`createPostSchema`) to validate the parsed data
+- Finally, we return a JSON response with the validated expense data
 
 
 ---
-@14/218min
+@15/218min
