@@ -4,7 +4,7 @@ src = https://www.youtube.com/watch?v=jXyTIQOfTTk&t=89s
 
 This tutorial is meant to be for any Web Dev, junior or advanced, that wants to learn how to build a modern React App using the following Tech Stack:
 - **Bun & Hono** in the backend
-- **Vite & React** in the frontend
+- **Vite** in the frontend
 
 We're going to develop an **expense tracker** app.
 
@@ -343,8 +343,6 @@ export const expensesRoute = new Hono()
     const expense = createPostSchema.parse(data);   // validating the data type with Zod
     return c.json(expense);
   });
-  // .delete
-  // .put
 ```
 
 `createPostSchema` represents the structure of the data that I want when someone tries to post an expense.  
@@ -361,14 +359,55 @@ All of the above works fine, but since doing this at the HTTP layer is very comm
 https://hono.dev/docs/guides/validation#zod-validator-middleware  
 
 - from the terminal, while being inside our 'app' project folder, run this cmd: `bun add @hono/zod-validator`
-- then, we must import the validator in our `expenses.ts` file with ``
+- then, we must import the validator in our `expenses.ts` file with `import { zValidator } from '@hono/zod-validator'`
 
 With this Hono middleware, our code would look like this:
+```js
+import { hono } from 'hono';
+import { zValidator } from '@hono/zod-validator';
+
+type Expense = {
+  id: number,
+  title: string,
+  amount: number
+};
+
+const fakeExpenses: Expense[] = [
+  { id: 1, title: "Groceries", amount: 50 },
+  { id: 2, title: "Utilities", amount: 100 },
+  { id: 3, title: "Rent", amount: 1000 }
+];
+
+// creating a Zod object
+const createPostSchema = z.object({
+  title: z.string().min(3).max(50),     // must contain between 3 and 50 characters
+  amount: z.number().int().positive()   // must be a positive integer
+});
+
+export const expensesRoute = new Hono()
+  .get("/", (c) => {
+    return c.json({ expenses: fakeExpenses });
+  });
+  .post("/", zValidator("json", createPostSchema), async (c) => {
+    const data = await c.req.valid("json");   // data coming over the POST request
+    const expense = createPostSchema.parse(data);   // validating the data type with Zod
+    fakeExpenses.push({...expense, id: fakeExpenses.length+1});
+    return c.json(expense);
+  });
+```
+We have inserted our middleware function `zValidator()` in our .post method
+- the first parameter is the data type (json) that it needs to parse
+- the second parameter is the Zod object that specifies the requirement the data needs to meet in order to get validated
+
+We have replaced `c.req.json()` with `c.req.valid("json")`, as instructed in the Hono documentation.  
+Finally, we add the new expense to the fake database with `fakeExpenses.push({...expense, id: fakeExpenses.length+1})`
+
+---
+
+Then, we can continue adding some endpoints in `expenses.ts`:
 ```js
 
 ```
 
-
-
 ---
-@15/218min
+@17/218min
