@@ -226,10 +226,10 @@ import { hono } from 'hono';
 export const expensesRoute = new Hono()
   .get("/", (c) => {
     return c.json({ expenses: [] });
-  });
+  })
   .post("/", (c) => {
     return c.json({});
-  });
+  })
   // .delete
   // .put
 ```
@@ -258,7 +258,7 @@ app.use(logger());
 
 app.get('/test', (c) => {
   return c.json({"message": "test"})
-});
+})
 
 app.route("/api/expenses", expensesRoute);
 
@@ -290,11 +290,11 @@ const fakeExpenses: Expense[] = [
 export const expensesRoute = new Hono()
   .get("/", (c) => {
     return c.json({ expenses: fakeExpenses });
-  });
+  })
   .post("/", async (c) => {
     const data = await c.req.json();
     return c.json(expense);
-  });
+  })
   // .delete
   // .put
 ```
@@ -337,12 +337,12 @@ const createPostSchema = z.object({
 export const expensesRoute = new Hono()
   .get("/", (c) => {
     return c.json({ expenses: fakeExpenses });
-  });
+  })
   .post("/", async (c) => {
     const data = await c.req.json();   // data coming over the POST request
     const expense = createPostSchema.parse(data);   // validating the data type with Zod
     return c.json(expense);
-  });
+  })
 ```
 
 `createPostSchema` represents the structure of the data that I want when someone tries to post an expense.  
@@ -387,13 +387,13 @@ const createPostSchema = z.object({
 export const expensesRoute = new Hono()
   .get("/", (c) => {
     return c.json({ expenses: fakeExpenses });
-  });
+  })
   .post("/", zValidator("json", createPostSchema), async (c) => {
     const data = await c.req.valid("json");   // data coming over the POST request
     const expense = createPostSchema.parse(data);   // validating the data type with Zod
     fakeExpenses.push({...expense, id: fakeExpenses.length+1});
     return c.json(expense);
-  });
+  })
 ```
 We have inserted our middleware function `zValidator()` in our .post method
 - the first parameter is the data type (json) that it needs to parse
@@ -412,9 +412,21 @@ Then, we can add an endpoint (still in `expenses.ts`) so we can get a specific e
     const expense = createPostSchema.parse(data);   // validating the data type with Zod
     fakeExpenses.push({...expense, id: fakeExpenses.length+1});
     return c.json(expense);
-  });
-  .get("/:id", 
+  })
+  .get("/:id{[0-9]+}", (c) => {
+    const id = Number.parseInt(c.req.param('id'));
+  })
 ```
+Any path parameter is going to be a string by default, hence the need to convert 'id' into an integer with `Number.parseInt()`.  
+
+But before converting this 'id' into an integer, I need to make sure it's actually a number.  
+To do that, I'm using **regexp** (regular expressions), which explains the presence of `{[0-9]+}` besides the path parameter.  
+This regexp means "has to be one or more numbers".  
+
+
+
+
+
 
 ---
-@17/218min
+@18/218min
