@@ -552,7 +552,7 @@ With Ajax, you can also use JSON to handle data having a more complex structure.
 >AJAX = **Asynchronous JavaScript and XML**, a powerful web development technique that allows web applications to update content dynamically
 >without reloading the entire page. https://www.perplexity.ai/search/what-s-ajax-in-web-dev-YouhpBjFQaS8_xJ8y.vYmw
 
-There is also another type of encoding: multipart/form-data. This one is used to upload binary files.  
+There is also another type of encoding: **multipart/form-data**. This one is used to upload **binary files**.  
 
 
 
