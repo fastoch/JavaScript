@@ -355,15 +355,18 @@ Analogous methods exist for all the HTTP verbs (GET, DELETE, PUT, ...).
 
 ---
 
-We will build a simple logger. For every request, it should log to the console a string taking the following format: `method path - ip`  
+We will build a simple logger. For every request, it will log to the console a string taking the following format:  
+`method path - ip`  
 An example would look like this: `GET /json - ::ffff:127.0.0.1`  
-- You can get the request method (http verb), the relative route path, and the caller's IP from the request object using `req.method`,
-  `req.path` and `req.ip`.
+- You can get the request method (http verb), the relative route path, and the caller's IP from the request object using:
+  - `req.method`,
+  - `req.path`,
+  - and `req.ip`.
 - Remember to call `next()` when you are done, or your server will be stuck forever 
 
 >[!note]
 >Express evaluates functions in the order they appear in the code. This is true for middleware too.
->If you want it to work for all the routes, it should be mounted before them.
+>If you want a middleware to work for all the routes, it should be mounted before them.
 
 Here's how our `myApp.js` file looks like with the request logger middleware implemented:
 ```js
@@ -426,7 +429,7 @@ We will how in the "Advanced Express" section.
 
 - In the route `app.get('/now', ...)`, chain a middleware function and the final handler.  
 - In the middleware function, you should add the current time to the request object in the `req.time` key.  
-- You can use `new Date().toString()`.  
+- You can use `new Date().toString()` to get the current date in string format  
 - In the handler, respond with a JSON object taking the structure {time: req.time}.  
 
 ## Solution
