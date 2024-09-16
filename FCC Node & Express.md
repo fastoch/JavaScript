@@ -642,6 +642,15 @@ app.get('/name', (req, res) => {
 module.exports = app;
 ```
 
+---
+
+# Get Data from POST requests
+
+## Exercise
+
+- Mount a POST handler at the path `/name`
+- A form has already been added to the HTML frontpage. It will submit the same data as in 
+- 
 
 ---
 EOF
