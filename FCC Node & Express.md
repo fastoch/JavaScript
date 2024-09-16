@@ -649,8 +649,44 @@ module.exports = app;
 ## Exercise
 
 - Mount a POST handler at the path `/name`
-- A form has already been added to the HTML frontpage. It will submit the same data as in 
-- 
+- A form has already been added to the HTML frontpage. It will submit the same data as in the query string exercise
+- If the body-parser is configured correctly, you should find the parameters in the object `req.body`
+- Respond with the same JSON object as before: `{name: 'firstname lastname'}`.
+- Test if your endpoint works using the html form we provided in the app frontpage.
+
+## Solution
+
+```js
+app.route('/name')
+    .get((req, res) => {
+        const { first, last } = req.query;
+        if (!first || !last) {
+            return res.status(400).json({ error: 'Both first and last name are required' });
+        }
+        res.json({ name:  `${first} ${last}` });
+    })
+    .post((req, res) => {
+        const { first, last } = req.body;
+        if (!first || !last) {
+            return res.status(400).json({ error: 'Both first and last name are required' });
+        }
+        res.json({ name:  `${first} ${last}` });
+    })
+```
+
+---
+
+>[!important]
+>There are several other http methods other than GET and POST.
+>>And by convention there is a correspondence between the http verb, and the operation you are going to execute on the server.
+>>>The conventional mapping is:
+>>>- **POST** (sometimes PUT) - Create a new resource using the information sent with the request
+>>>- **GET** - Read an existing resource without modifying it,
+>>>- **PUT** or **PATCH** (sometimes POST) - Update a resource using the data sent,
+>>>- **DELETE** - Delete a resource.
+
+Except from GET, all the methods listed above can have a payload (i.e. the data into the request body).  
+There are a couple of other methods which are used to negotiate a connection with the server. The body-parser middleware works with these methods as well.  
 
 ---
 EOF
