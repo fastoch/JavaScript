@@ -571,7 +571,76 @@ There is another type of encoding: **multipart/form-data**. This one is used to 
 
 **NOTE**:  
 `extended` is a config option that tells `body-parser` which parsing needs to be used.  
+- When `extended=false`, it uses the classic encoding `querystring` library.  
+- When `extended=true`, it uses `qs` library for parsing.  
+When using `extended=false`, values can be only strings or arrays.  
+The object returned when using `querystring` does not prototypically inherit from the default JS object, which means  
+functions like `hasOwnProperty`, `toString` won't be available.  
+The extended version allows more data flexibility, but it is outmatched by **JSON**.
 
+## Solution
+
+Here's the solution:
+```js
+const bodyParser = require('body-parser'); 
+...
+app.use(bodyParser.urlencoded({extended: false}));
+```
+
+And here's the whole `myApp.js` file:
+```js
+require('dotenv').config();
+const bodyParser = require('body-parser');
+
+let express = require('express');
+let app = express();
+
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.use("/", (req, res, next) => {
+    console.log(`${req.method} ${req.path} - ${req.ip}`); 
+    next();
+});
+
+let absolutePath = __dirname + "/views/index.html";
+app.get("/", (req,res) => {
+    res.sendFile(absolutePath);
+});
+
+app.use("/public", express.static(__dirname + "/public"));
+
+app.get("/json", (req, res) => {
+    let message = "Hello json";
+    const msgCase = process.env.MESSAGE_STYLE;
+    if (msgCase === "uppercase") { 
+        message = message.toUpperCase();
+    }
+    console.log(message); // simple check
+    res.json({"message": message});
+});
+
+app.get('/now', (req, res, next) => {
+    req.time = new Date().toString(); 
+    next();
+  }, (req, res) => {
+    res.json({time: req.time});
+});
+
+app.get('/:word/echo', (req, res) => {
+  const word = req.params.word; 
+  res.json({echo: word});
+});
+
+app.get('/name', (req, res) => {
+    const { first, last } = req.query;
+    if (!first || !last) {
+        return res.status(400).json({ error: 'Both first and last name are required' });
+    }
+    res.json({ name:  `${first} ${last}` });
+});
+
+module.exports = app;
+```
 
 
 ---
