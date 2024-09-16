@@ -566,9 +566,11 @@ There is another type of encoding: **multipart/form-data**. This one is used to 
 - we need to require this package at the top of `myApp.js` and store it in a variable named `bodyParser`
   - `const bodyParser = require('body-parser');` 
 - The middleware to handle URL encoded data is returned by `bodyParser.urlencoded({extended: false})`
+- pass the function returned by the previous method call to `app.use()`
+- as usual, the middleware must be mounted before all the routes that depend on it
 
 **NOTE**:  
-`extended` is a config option used that tells `body-parser` which parsing needs to be used.  
+`extended` is a config option that tells `body-parser` which parsing needs to be used.  
 
 
 
