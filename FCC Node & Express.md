@@ -489,7 +489,7 @@ Another common way to get input from the client is by encoding the data after th
 - Each couple is separated by an ampersand `&`
 - Express can parse the data from the query string, and populate the object `req.query`
 - Some characters, like the percent `%`, cannot be in URLs and have to be encoded in a different format before you can send them
-- If you use the API directly from JavaScript code, you can use specific methods to encode/decode these characters
+  - If you use the API directly from JavaScript code, you can use specific methods to encode/decode these characters
 
 **Example**:
 ```js
@@ -514,7 +514,7 @@ This way, you can save a bit of typing, and have cleaner code.
 
 ```js
 app.get('/name', (req, res) => {
-    const { first, last } = req.query;
+    const { first, last } = req.query; // using object destructuring to extract values & assign them to variables
     if (!first || !last) {
         return res.status(400).json({ error: 'Both first and last name are required' });
     }
@@ -530,7 +530,7 @@ It should print out: `{"name":"Fabrice Pustoch"}`
 # Use body-parser to parse POST requests
 
 - Besides GET, there's another common HTTP verb, it is POST.  
-- POST is the default method used to send client data with HTML forms.
+- **POST** is the default method used to send client data with **HTML forms**.
 - In REST convention, POST is used to send data to create new items in the database (a new user, a new blog post...)
 - we don't have a database in this tutorial, but we still need to learn how to handle POST requests
 
@@ -539,7 +539,7 @@ The **body** is a part of the HTTP request, also called the **payload**.
 
 Even though the data is not visible in the URL, this does not mean that it is private.  
 To see why, look at the raw content of an HTTP POST request:
-```
+```js
 POST /path/subpath HTTP/1.0
 From: john@example.com
 User-Agent: someBrowser/1.0
@@ -548,15 +548,27 @@ Content-Length: 20
 
 name=John+Doe&age=25
 ```
-As you can see, the body is encoded like the query string. This is the default format used by HTML forms.  
+As you can see in the last line, the body is encoded like the query string. This is the default format used by HTML forms.  
 With Ajax, you can also use JSON to handle data having a more complex structure.  
 
 >[!note]
->AJAX = **Asynchronous JavaScript and XML**, a powerful web development technique that allows web applications to update content dynamically
+>AJAX = **Asynchronous JavaScript and XML**, a powerful web dev technique that allows web apps to update content dynamically
 >without reloading the entire page. https://www.perplexity.ai/search/what-s-ajax-in-web-dev-YouhpBjFQaS8_xJ8y.vYmw
 
-There is also another type of encoding: **multipart/form-data**. This one is used to upload **binary files**.  
+There is another type of encoding: **multipart/form-data**. This one is used to upload **binary files**.  
 
+## Exercise
+
+- in this exercise, you'll use a URL-encoded body
+- to parse the data coming from POST requests, you must use the `body-parser` package
+- this package allows you to use a series of middleware which can decode data in different formats
+- `body-parser` has already been installed and is in your project's `package.json` file
+- we need to require this package at the top of `myApp.js` and store it in a variable named `bodyParser`
+  - `const bodyParser = require('body-parser');` 
+- The middleware to handle URL encoded data is returned by `bodyParser.urlencoded({extended: false})`
+
+**NOTE**:  
+`extended` is a config option used that tells `body-parser` which parsing needs to be used.  
 
 
 
